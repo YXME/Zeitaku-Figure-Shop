@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Goldorak</title>
+        <link rel="stylesheet" href="CSS.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="Accueil.html"><img src="logo.png" alt="Logo du site" height="100px" width="254px" /></a> <!-- création d'une image cliquable pour retourner sur la page d'accueil-->
+            <div class="pu">
+                <a href ="user.html"><img src="user-icon.png" alt="Logo user" class="image" height="100px" width="87px"/></a> <!-- création d'une image clique pour se rendre sur le compte user-->
+                <a href="panier.html"><img src ="panier-icon.png" alt="Logo du panier" height="100px" width="120px"/></a> <!-- création d'une image cliquable pour aller sur la paage mon panier-->
+            </div>
+        </header>
+        
+        <!-- création d'un carrousel, et description du produit-->
+
+        <section class="carousel" aria-label="Gallery">
+          <ol class="carousel__viewport">
+                <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+                    <a><img src="goldorak_photo_1.jpg" alt="broly" height="538px" width="505px"></a> <!--première image à s'afficher sur le carrousel-->
+                    <div class="carousel__snapper">
+                        <a href="#carousel__slide3" class="carousel__prev">Go to last slide</a>
+                        <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+                    </div>
+                </li>
+
+                <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+                    <a><img src="goldorak_photo_2.jpg" alt="broly" height="538px" width="480px"></a> <!--deuxième image à s'afficher sur le carrousel-->
+                    <div class="carousel__snapper"></div>
+                    <a href="#carousel__slide1"class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
+                </li>
+
+                <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+                    <a><img src="goldorak_photo_3.jpg" alt="broly" height="538px" width="480px"></a> <!-- dernière image du carrousel  -->
+                    <div class="carousel__snapper"></div>
+                    <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
+                </li>
+
+
+            </ol>
+          <aside class="carousel__navigation"> <!--liste de navigation du carousel (petits points noirs sur le carousel)-->
+             <ol class="carousel__navigation-list">
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
+              </li>
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
+              </li>
+              <li class="carousel__navigation-item">
+                <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
+              </li>
+            </ol>
+          </aside>
+        </section>
+    </body>
+</html>
