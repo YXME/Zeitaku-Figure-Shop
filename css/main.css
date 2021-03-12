@@ -1,0 +1,16 @@
+body{
+    background-color:#1D1D1D;
+    margin: 0;
+}
+
+header {
+    background-color: #303030;
+    text-align:center;
+
+}
+
+.pu{
+    margin-top: 0px;
+    margin-right: 5px;
+    text-align:right;
+}
