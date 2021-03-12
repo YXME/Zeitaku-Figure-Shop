@@ -6,20 +6,57 @@ body{
 
 header {
     background-color: #303030;
-    text-align:center;
     width: 100%;
     height: 110px;
-    margin-right: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-logo {
+  flex-grow: 0;
 }
 
 .pu{
-    margin-top: 0px;
-    margin-right: 5px;
-
-    position:absolute; /*position des logos de la barre d'accueil*/
-    top:10px;
-    right:20px;
+    width: 125px;
+    height: 110px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.search-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input{
+  border-radius: 5px 0 0 5px;
+  width: 450px;
+  height: 30px;
+  border:none;
+}
+
+.search-button{
+  border-radius: 0 5px 5px 0;
+  width: 35px;
+  height: 30px;
+  background-color:#1D1D1D;
+  border:none;
+}
+
+.search-logo{
+  width: 17px;
+  height: 17px;
+  margin-left: 0;
+}
+
 
 .image{
 
