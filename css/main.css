@@ -135,11 +135,50 @@ ul, p {
 
 }
 
-.descriptif{
-    color:#fff;
+.content {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+
 }
 
-/*CSS pour le carrousel*/
+.img{ /*classe relative aux images de la statue*/
+  margin-left:20px;
+  margin-top:50px;
+  width:45%;
+  
+}
+
+
+.infos{ /*données relatives à la statue*/ 
+    color:#fff;
+    font-size:20px;
+
+    
+}
+
+.prix{ /*prix de la statue en euros et en yen*/
+  color:white;
+  text-align: right;
+  margin-right:10px;
+  font-size: 30px;
+
+}
+
+.data{ /*nom de la statue en fr et en jap*/
+  color:white;
+  margin-right:20px;
+  margin-top:25px;
+  width:45%;
+}
+
+.descriptif{
+  color:white;
+  font-family:Arial;
+  margin-left: 20px;
+}
+/*CSS pour le carrousel
 @keyframes tonext {
     75% {
       left: 0;
@@ -188,7 +227,7 @@ ul, p {
   
   * {
     box-sizing: border-box;
-    scrollbar-color: transparent transparent; /* thumb and track color */
+    scrollbar-color: transparent transparent; 
     scrollbar-width: 0px;
   }
   
@@ -221,7 +260,7 @@ ul, p {
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
     margin: 0;
-    max-width: 37.5rem; /*largeur du carrousel*/
+    max-width: 37.5rem; /*largeur du carrousel
     margin: 0 auto;
     
     
@@ -355,13 +394,13 @@ ul, p {
     text-align: center;
     pointer-events: none;
   }
-  /* icône des flèches pour faire défiler les pages*/
+  /* icône des flèches pour faire défiler les pages
   .carousel::before {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
   }
   
   .carousel::after {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
-  }
+  }*/
   
 >>>>>>> 6fc17aca13a110beaba09bdd25eb603f952ebe5b:Projet Java/CSS.css
