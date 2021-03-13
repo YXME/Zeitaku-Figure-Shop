@@ -1,17 +1,19 @@
 @font-face {
-  font-family: "Autography";
-  src: url("/res/font/Autography.otf") format("otf"),
+  font-family: "kashima";
+  src: url("../res/font/kashima.otf") format("otf"),
  }
 
 
  @font-face {
   font-family: "MSGothic";
-  src: url("/res/font/msgothic.ttc") format("ttc"),
+  src: url("../res/font/msgothic.ttc") format("ttc");
  }
 
 body{
   margin: 0;
+  overflow-x:hidden;
   width: 100%;
+  height: 100%;
   background-color:#1D1D1D;
 }
 
@@ -75,10 +77,9 @@ header {
 /* footer */
 
 footer {
-  margin-top: 50px;
   background-color: #303030;
   width: 100%;
-  height: 230px;
+  height: 270px;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -89,7 +90,7 @@ footer {
 
 .footer-top {
   width: 99%;
-  height: 100px;
+  height: 160px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -98,10 +99,11 @@ footer {
 
 .footer-bottom{
   width: 100%;
-  height: 90px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -125,10 +127,15 @@ footer {
   align-items: center;
 }
 
-.footer-hr{
-  color :rgb(110, 110, 110);
+.footer-hr {
+  background: grey;
   width: 99%;
-  height: 3px;
+  height: 1px;
+}
+
+.footer-copyright{
+  font-size: 8px;
+  color:grey;
 }
 
 ul, p {
@@ -138,4 +145,20 @@ ul, p {
 
 /* footer */
 
+a p{
+  color: white;
+  transition: color 0.3s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover p{
+  color: #EAEE59;
+}
 
