@@ -1,4 +1,51 @@
-.statuegauche{
+.section{
+  overflow: none;
+  background-color:#000000;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  z-index: 1;
+  margin:0;
+  height:fit-content;
+
+}
+
+.illustration{
+  
+  width:fit-content;
+  z-index:2;
+
+}
+
+.illustration img{
+  width:20%;
+
+}
+
+.text-box{
+  position:absolute;
+  margin-right: 0;
+  margin-top: 0;
+  background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,1),black, black, black ,black );
+  height: inherit;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  z-index:4;
+  align-items:center;
+
+}
+
+.border{
+  background:linear-gradient(to right, #C0AB1C, #EAEE59, #C0AB1C);
+  height: 5px;
+  width: 100%;
+  margin:0;
+}
+
+
+/* .statuegauche{
     margin-top:20px;
       display:flex;
       flex-direction: row;
@@ -10,12 +57,7 @@
       
   }
   
-  .te{ /*classe contenant l'image de broly*/
-    margin-left:20px;
-    margin-top:50px;
-    width:45%;
-    
-  }
+
   
   .discover{
     color:white;
@@ -41,17 +83,17 @@
   }
   
   .az{ /*classe contenant l'image de madara*/
-  margin-left:20px;
+  /*margin-left:20px;
   margin-top:50px;
   width:45%;
   
   }
   
-  .news{ /*classe contenant le texte descritpif de broly*/
+  .news{ /*classe contenant le texte descritpif de broly
   color:white;
   text-align:center;
   width:45%;
-  }
+  } */
   
   /*CSS pour le carrousel
   @keyframes tonext {
