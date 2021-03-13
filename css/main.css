@@ -109,6 +109,63 @@ header {
   font-family:Arial;
   margin-left: 20px;
 }
+
+
+
+.statuegauche{
+  margin-top:20px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    border-width:5px 0px 5px 0px;
+    border-style:solid;
+    border-color:#FFD700;
+    
+}
+
+.te{ /*classe contenant l'image de broly*/
+  margin-left:20px;
+  margin-top:50px;
+  width:45%;
+  
+}
+
+.discover{
+  color:white;
+  text-align:center;
+  font-size:30px;
+}
+
+a{
+  color:white;
+  text-decoration:none;
+}
+
+.statuedroite{
+  margin-top:20px;
+  display:flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  border-width:5px 0px 5px 0px;
+  border-style:solid;
+  border-color:#FFD700;
+  
+}
+
+.az{ /*classe contenant l'image de madara*/
+margin-left:20px;
+margin-top:50px;
+width:45%;
+
+}
+
+.news{ /*classe contenant le texte descritpif de broly*/
+color:white;
+text-align:center;
+width:45%;
+}
 /*CSS pour le carrousel
 @keyframes tonext {
     75% {
