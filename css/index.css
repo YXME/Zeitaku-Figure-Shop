@@ -128,3 +128,53 @@
 .cropped-version{
   object-fit: cover;
 }
+
+.info-user{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  color:white;
+  width:100%;
+  margin-top:20px;
+  text-align:center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table{
+  border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+  
+  
+  }
+
+td
+  {
+      border: 1px solid white;
+      margin-right:5px;
+      
+  }
+
+th{
+  border:1px solid white;
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.account-details{
+  margin-left:300px;
+  color:white;
+  display: inline-block;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: end;
+  font-family:verdana;
+}
+
+.log-out{
+font-family:verdana;
+  background-color:grey;
+  text-align:center;
+  color:white;
+
+}
