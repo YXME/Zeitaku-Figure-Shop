@@ -40,6 +40,12 @@ th {
 .log-out {
     font-family: verdana;
     background-color: grey;
-    
     color: white;
+}
+
+.commander{
+    font-family: verdana;
+    background-color: grey;
+    color: white;
+    margin-left:200px;
 }
