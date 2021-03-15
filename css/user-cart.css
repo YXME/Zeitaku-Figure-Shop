@@ -38,14 +38,22 @@ th {
 }
 
 .log-out {
-    font-family: verdana;
-    background-color: grey;
+    background-color: #EAEE59;
     color: white;
+    text-align: center;
+    margin-bottom:10px;
+    font-size: 15pt;
+    font-family: Verdana, Arial, sans-serif ;
+    border: none;
 }
 
 .commander{
-    font-family: verdana;
-    background-color: grey;
-    color: white;
-    margin-left:200px;
-}
+        background-color: #EAEE59;
+        color: white;
+        text-align: center;
+        margin-bottom:10px;
+        margin-left:100px;
+        font-size: 15pt;
+        font-family: Verdana, Arial, sans-serif ;
+        border: none;
+    }
