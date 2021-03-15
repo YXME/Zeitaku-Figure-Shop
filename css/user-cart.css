@@ -6,6 +6,7 @@
     color: white;
     width: 100%;
     margin-top: 20px;
+    margin-left:20px;
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
 }
@@ -26,19 +27,19 @@ th {
 }
 
 .account-details {
-    margin-left: 300px;
+    margin-left: 100px;
     color: white;
-    display: inline-block;
+    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: end;
+    align-items: flex-start;
     font-family: Verdana, Arial, sans-serif;
 }
 
 .log-out {
     font-family: verdana;
     background-color: grey;
-    text-align: center;
+    
     color: white;
 }
