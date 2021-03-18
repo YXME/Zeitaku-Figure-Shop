@@ -21,15 +21,15 @@
                 </div>
                 <div class="footer-right">
                     <!--- Réseaux sociaux -->
-                    <a href="https://facebook.com"><img src="logos/facebook.png" width="50%" height="50%"/></a>
-                    <a href="https://twitter.com"><img src="logos/twitter.png" width="50%" height="50%"/></a>
-                    <a href="https://instagram.com"><img src="logos/instagram.png" width="50%" height="50%"/></a>
-                    <a href="https://pinterest.com"><img src="logos/pinterest.png" width="50%" height="50%"/></a>
+                    <a href="https://facebook.com"><img src="../assets/logos/facebook.png" width="50%" height="50%"/></a>
+                    <a href="https://twitter.com"><img src="../assets/logos/twitter.png" width="50%" height="50%"/></a>
+                    <a href="https://instagram.com"><img src="../assets/logos/instagram.png" width="50%" height="50%"/></a>
+                    <a href="https://pinterest.com"><img src="../assets/logos/pinterest.png" width="50%" height="50%"/></a>
                 </div>
             </div>
             <div class="footer-bottom">
                 <hr class="footer-hr"/>
-                <a href="#"><img src="logos/logo.png" alt="Logo du site" width="191px" height="75px"/></a>
+                <a href="#"><img src="../assets/logos/logo.png" alt="Logo du site" width="191px" height="75px"/></a>
                 <p class="footer-copyright">© Copyright ZFS - MDC S.A.R.L 2021</p>
             </div>
         </footer>

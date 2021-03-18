@@ -2,7 +2,7 @@
     <header>
             <div class="main-logo">
                 <a href="#">
-                    <img src="logos/logo.png" alt="Logo du site" width="216px" height="85px"/>
+                    <img src="../assets/logos/logo.png" alt="Logo du site" width="216px" height="85px"/>
                 </a>
             </div>
 
@@ -10,18 +10,18 @@
                 <form action="" method="GET" id="search-form" class="search-form">
                       <input class="search-input" type="text" placeholder=" Que recherchez-vous ?" name="search"/>
                       <button class="search-button" type="submit" name="button">
-                          <img src="logos/search-icon.png" class="search-logo"/>
+                          <img src="../assets/logos/search-icon.png" class="search-logo"/>
                         </button>
                   </form>
             </div>
 
             <div class="pu">
                 <a href ="user.html">
-                    <img src="logos/user-icon.png" alt="Logo user" width="44px" height="50px"/>
+                    <img src="../assets/logos/user-icon.png" alt="Logo user" width="44px" height="50px"/>
                 </a>
 
                 <a href="cart.html">
-                    <img src ="logos/panier-icon.png" alt="Logo du panier" width="60px" height="50px"/>
+                    <img src ="../assets/logos/panier-icon.png" alt="Logo du panier" width="60px" height="50px"/>
                 </a>
             </div>
         </header>
