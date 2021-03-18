@@ -5,14 +5,39 @@
         <meta charset="utf-8">
         <link rel="icon" href="res/images/logos/favicon.png" />
         <title>Zeitaku Figure Shop</title>
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="index.css">
         <script src="test.js"></script>
     </head>
 
     <body>
 
-        
+        <header>
+            <div class="main-logo">
+                <a href="#">
+                    <img src="res/images/logos/logo.png" alt="Logo du site" width="216px" height="85px"/>
+                </a>
+            </div>
+
+            <div>
+                <form action="" method="GET" id="search-form" class="search-form">
+                      <input class="search-input" type="text" placeholder=" Que recherchez-vous ?" name="search"/>
+                      <button class="search-button" type="submit" name="button">
+                          <img src="res/images/logos/search-icon.png" class="search-logo"/>
+                        </button>
+                  </form>
+            </div>
+
+            <div class="pu">
+                <a href ="user.html">
+                    <img src="res/images/logos/user-icon.png" alt="Logo user" width="44px" height="50px"/>
+                </a>
+
+                <a href="cart.html">
+                    <img src ="res/images/logos/panier-icon.png" alt="Logo du panier" width="60px" height="50px"/>
+                </a>
+            </div>
+        </header>
 
         <hr class="border"/>
         
@@ -84,10 +109,40 @@
         <section class="others-products-section">
           <p class="others-products-p">Découvrez d'autres produits de notre collection...</p>
           <nav class="others-products-nav">
-            <article class="others-products-article">
-              <img src="res/images/illu/snk_photo_accueil.jpg" class="cropped-version" width="250px" height="250px" onmouseover="show()" onmouseout="hide()"/> <!-- au passage de la souris sur l'image il faut afficher la balise aside (on peut masquer les autres images)-->
-              <aside class="others-products-aside" visibility="hidden">
-                <p class="title" >Lorem Ipsum</p> <!-- une fois la souris ailleurs que sur l'image revenir au détails initiaux-->
+            <article class="others-products-article" onmouseover="show('fig1')" onmouseout="hide('fig1')"> <!-- mettre des id sur les balises articles et en fonction de l'article sélectionné caher les autres-->
+              <img src="res/images/illu/snk_photo_accueil.jpg" class="cropped-version" width="250px" height="250px" />  
+              <aside id="fig1" class="others-products-aside">
+                <p class="title" >Lorem Ipsum</p>
+                <p class="description">Designé par Akira Toriyama mais créé par Shigeyasu Yamauchi. <br/>
+                  Nous avons voulu rendre hommage à sa puissance en adaptant la scène où il domine le combat contre Goku et maintient le héros inerte par la tête.</p>
+                <a href="figure.html"><p class="link">Découvrir ></p></a>
+              </aside>
+            </article>
+
+            <article class="others-products-article" onmouseover="show('fig2')" onmouseout="hide('fig2')">
+              <img src="res/images/illu/snk_photo_accueil.jpg" class="cropped-version" width="250px" height="250px" />  
+              <aside id="fig2" class="others-products-aside">
+                <p class="title" >Lorem Ipsum</p> 
+                <p class="description">Designé par Akira Toriyama mais créé par Shigeyasu Yamauchi. <br/>
+                  Nous avons voulu rendre hommage à sa puissance en adaptant la scène où il domine le combat contre Goku et maintient le héros inerte par la tête.</p>
+                <a href="figure.html"><p class="link">Découvrir ></p></a>
+              </aside>
+            </article>
+
+            <article class="others-products-article" onmouseover="show('fig3')" onmouseout="hide('fig3')">
+              <img src="res/images/illu/snk_photo_accueil.jpg" class="cropped-version" width="250px" height="250px" />  
+              <aside id="fig3" class="others-products-aside">
+                <p class="title" >Lorem Ipsum</p>  
+                <p class="description">Designé par Akira Toriyama mais créé par Shigeyasu Yamauchi. <br/>
+                  Nous avons voulu rendre hommage à sa puissance en adaptant la scène où il domine le combat contre Goku et maintient le héros inerte par la tête.</p>
+                <a href="figure.html"><p class="link">Découvrir ></p></a>
+              </aside>
+            </article>
+
+            <article class="others-products-article" onmouseover="show('fig4')" onmouseout="hide('fig4')">
+              <img src="res/images/illu/snk_photo_accueil.jpg" class="cropped-version" width="250px" height="250px" />  
+              <aside id="fig4" class="others-products-aside">
+                <p class="title" >Lorem Ipsum</p>  
                 <p class="description">Designé par Akira Toriyama mais créé par Shigeyasu Yamauchi. <br/>
                   Nous avons voulu rendre hommage à sa puissance en adaptant la scène où il domine le combat contre Goku et maintient le héros inerte par la tête.</p>
                 <a href="figure.html"><p class="link">Découvrir ></p></a>
