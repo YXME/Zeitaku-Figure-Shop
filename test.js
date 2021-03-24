@@ -28,3 +28,4 @@ function hide(id){ /*fonction qui permet d'afficher et de cacher le texte au pas
 function show(id){
   document.getElementById(id).style.display = "block";
 }
+
