@@ -6,16 +6,16 @@
 
             <ul class="footer-ul">
                 <li class="footer-li">
-                    <a><p>CGV</p></a>
+                    <router-link to="/cgv"><p>CGV</p></router-link>
                 </li>
                 <li class="footer-li">
                     <router-link to="/about"><p>Qui sommes-nous ?</p></router-link>
                 </li>
                 <li class="footer-li">
-                    <a><p>Livraisons</p></a>
+                    <router-link to="/livraisons"><p>Livraisons</p></router-link>
                 </li>
                 <li class="footer-li">
-                    <a><p>Contact</p></a>
+                    <router-link to="/contact"><p>Contact</p></router-link>
                 </li>
             </ul>
         </div>

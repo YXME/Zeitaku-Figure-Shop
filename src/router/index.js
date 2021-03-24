@@ -4,6 +4,7 @@ import Index from '../views/Index.vue'
 import Figure from '../views/Figure.vue'
 import User from '../views/User.vue'
 import Cart from '../views/Cart.vue'
+import LoginRegister from '../views/LoginRegister.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path:'/cart',
     name:'Cart',
     component: Cart
+  },
+  {
+    path:'/login-register',
+    name:'LoginRegister',
+    component: LoginRegister
   }
 ]
 

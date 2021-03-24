@@ -1,9 +1,9 @@
 <template>
     <header>
             <div class="main-logo">
-                <a href="#">
+                <router-link to="/">
                     <img src="../assets/logos/logo.png" alt="Logo du site" width="216px" height="85px"/>
-                </a>
+                </router-link> 
             </div>
 
             <div>
@@ -16,13 +16,13 @@
             </div>
 
             <div class="pu">
-                <a href ="user.html">
+                <router-link to="/user">
                     <img src="../assets/logos/user-icon.png" alt="Logo user" width="44px" height="50px"/>
-                </a>
+                </router-link> 
 
-                <a href="cart.html">
+                <router-link to="/cart">
                     <img src ="../assets/logos/panier-icon.png" alt="Logo du panier" width="60px" height="50px"/>
-                </a>
+                </router-link> 
             </div>
         </header>
 </template>
