@@ -27,14 +27,14 @@ const routes = [
     component: Figure
   },
   {
-    path:'/cart',
-    name:'Figure',
-    component: Figure
+    path:'/user',
+    name:'User',
+    component: User
   },
   {
-    path:'/',
-    name:'Figure',
-    component: Figure
+    path:'/cart',
+    name:'Cart',
+    component: Cart
   }
 ]
 

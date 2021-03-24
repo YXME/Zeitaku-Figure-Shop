@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "kashima";
+  src: url("../res/font/kashima.otf") format("otf"),
+}
+
+@font-face {
+  font-family: "MSGothic";
+  src: url("../res/font/msgothic.ttc") format("ttc");
+}
+
+html, head, body, |* {
+  margin: 0 !important;
+}
+
+body{
+  margin: 0 !important;
+  overflow-x:hidden;
+  width: 100%;
+  height: 100%;
+  background-color:#1D1D1D;
+}
+
+a p{
+  color: white;
+  transition: color 0.3s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover p{
+  color: #EAEE59;
+}

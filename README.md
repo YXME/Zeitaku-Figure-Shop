@@ -1,4 +1,4 @@
-# zeitaku-figure-shop
+# Zeitaku Figure Shop
 
 ## Project setup
 ```

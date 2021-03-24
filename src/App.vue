@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <HelloWorld />
+    <router-view/>
     <Footer/>
   </div>
 </template>
@@ -9,14 +9,22 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     Header,
     Footer
+  },
+  data(){
+    return{
+      main_figures: []
+    } 
+  },
+  methods: {
+    fetch_main_figures_from_database(){
+      this.main_figures.push();
+    }
   }
 }
 </script>
@@ -28,6 +36,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
