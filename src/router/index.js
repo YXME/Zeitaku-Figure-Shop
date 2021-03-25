@@ -5,6 +5,8 @@ import Figure from '../views/Figure.vue'
 import User from '../views/User.vue'
 import Cart from '../views/Cart.vue'
 import LoginRegister from '../views/LoginRegister.vue'
+import Livraison from '../views/Livraison.vue'
+import CGV from '../views/CGV.vue'
 
 Vue.use(VueRouter)
 
@@ -41,6 +43,16 @@ const routes = [
     path:'/login-register',
     name:'LoginRegister',
     component: LoginRegister
+  },
+  {
+    path:'/livraisons',
+    name:'Livraison',
+    component: Livraison
+  },
+  {
+    path:'/cgv',
+    name:'CGV',
+    component: CGV
   }
 ]
 
