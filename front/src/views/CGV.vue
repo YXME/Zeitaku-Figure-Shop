@@ -601,7 +601,7 @@
 
             <div class="retractation">
 
-                <p><strong><h4 id="id17">18- DROIT DE RÉTRACTATION:</h4></strong>
+                <p><strong><h4 id="id17">18- DROIT DE RÉTRACTATION:</h4></strong></p>
 
                     <p>
                         Conformément aux prescriptions de l’article L.222-9 du Code de la consommation, dans le cadre des contrats conclus à distance, « le consommateur dis­pose d’un délai de quatorze jours calendrier pour se rétracter d’un contrat à distance ou d’un contrat hors établissement sans avoir à motiver sa décision et sans encourir d’autres coûts que ceux prévus à l’article L. 222-10 ».
@@ -652,7 +652,6 @@
 
                         ZFS - MDC S.A.R.L 2021 procédera au remboursement en utilisant le même moyen de paiement que celui que le client aura utilisé pour la transaction initiale, sauf si le client convient expressément d'un moyen différent, en tout état de cause, ce remboursement n'occasionnera pas de frais pour le client. En cas d’expiration de la carte bancaire du client, le remboursement peut être effectué par virement bancaire ou via PayPal. Les éventuels frais financiers générés par le remboursement seront à la charge du client. ZFS - MDC S.A.R.L 2021 différera le remboursement jusqu'à réception du bien ou jusqu'à ce que le client ait fourni une preuve d'expédition du bien, la date retenue étant celle du premier de ces faits.
                     </p>
-                </p>
             </div>
 
             <div class="resolution">
@@ -674,7 +673,7 @@
 
             <div class="donnesperso">
 
-                <p><strong><h4 id="id20">21- PROTECTION DES DONNÉES A CARACTERE PERSONNEL</h4></strong> 
+                <p><strong><h4 id="id20">21- PROTECTION DES DONNÉES A CARACTERE PERSONNEL</h4></strong></p>  
 
                 
                     <p>
@@ -715,8 +714,6 @@
 
                         <li>Pour disposer desdits droits respectivement demander à ce que les données personnelles ne soient plus collectées, traitées ou utilisées pour les finalités reprises ci-dessus, ou demander la rectification de ses données, le client contacte Zeitaku en créant un ticket via la page du support : https://www.Zeitaku-art.com/fr/support (Il est indispensable que le client se connecte préalablement à son compte client Zeitaku pour créer un ticket).</li>
                     </ul>
-                
-                </p>  
             
             </div>
 
@@ -735,15 +732,18 @@
                 </p>
             </div>
 
-            <div class="zeitaku">
 
-                Zeitaku Art
-                Tous droits réservés. Les Logos, produits et noms de sociétés mentionnnés sont la propriété de leurs auteurs respectifs.
+        </div>
 
-                Copyright © Zeitaku 2010-2021
-            </div>
+        <div class="zeitaku">
+
+            Zeitaku Art
+            Tous droits réservés. Les Logos, produits et noms de sociétés mentionnnés sont la propriété de leurs auteurs respectifs.
+
+            Copyright © Zeitaku 2010-2021
         </div>
     </div>
+
 
 </template>
 
