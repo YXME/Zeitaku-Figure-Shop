@@ -63,7 +63,7 @@
             Une édition collector est aussi disponible et comprend en plus un buste alternatif qui le montre en train de préparer un Kikoha. 
           </i>
         </div>
-    <div>
+    </div>
 </template>
 
 <style scoped>
