@@ -4,51 +4,51 @@
 
                 <u>Sommaire des présentes conditions générales :</u>
 
-                <p><a href="#liens" style="color: white">1 - Définitions</a></p>
+                <p><a href="#liens" >1 - Définitions</a></p>
 
-                <p><a href="#id1" style="color: white">2 - Identification</a></p>
+                <p><a href="#id1"  >2 - Identification</a></p>
 
-                <p><a href="#id2" style="color: white">3 - Objet et dispositions générales</a></p>
+                <p><a href="#id2"  >3 - Objet et dispositions générales</a></p>
 
-                <p><a href="#id3" style="color: white">4 - Entrée en vigueur et modification des conditions générales de vente</a></p>
+                <p><a href="#id3"  >4 - Entrée en vigueur et modification des conditions générales de vente</a></p>
 
-                <p><a href="#id4" style="color: white">5 - Informations sur les produits</a></p>
+                <p><a href="#id4"  >5 - Informations sur les produits</a></p>
 
-                <p><a href="#id5" style="color: white">6 - Précommande-Commande</a></p>
+                <p><a href="#id5"  >6 - Précommande-Commande</a></p>
 
-                <p><a href="#id6" style="color: white">7 - Prix</a></p>
+                <p><a href="#id6"  >7 - Prix</a></p>
 
-                <p><a href="#id7" style="color: white">8 - Modalités de paiement</a></p>
+                <p><a href="#id7"  >8 - Modalités de paiement</a></p>
 
-                <p><a href="#id8" style="color: white">9 - Disponibilité des produits</a></p>
+                <p><a href="#id8"  >9 - Disponibilité des produits</a></p>
 
-                <p><a href="#id9" style="color: white">10 - Liste d’attente</a></p>
+                <p><a href="#id9"  >10 - Liste d’attente</a></p>
 
-                <p><a href="#id10" style="color: white">11 - Délais de livraison</a></p>
+                <p><a href="#id10"  >11 - Délais de livraison</a></p>
 
-                <p><a href="#id11" style="color: white">12 - Modalités de livraison</a></p>
+                <p><a href="#id11"  >12 - Modalités de livraison</a></p>
 
-                <p><a href="#id12" style="color: white">13 - Garanties Légales</a></p>
+                <p><a href="#id12"  >13 - Garanties Légales</a></p>
 
-                <p><a href="#id13" style="color: white">14 - Support SAV</a></p>
+                <p><a href="#id13"  >14 - Support SAV</a></p>
 
-                <p><a href="#id14" style="color: white">15 - Annulation</a></p>
+                <p><a href="#id14"  >15 - Annulation</a></p>
 
-                <p><a href="#id15" style="color: white">16 - Clause de réserve de propriété</a></p>
+                <p><a href="#id15"  >16 - Clause de réserve de propriété</a></p>
 
-                <p><a href="#id16" style="color: white">17 - Responsabilité</a></p>
+                <p><a href="#id16"  >17 - Responsabilité</a></p>
 
-                <p><a href="#id17" style="color: white">18 - Droit de rétractation</a></p>
+                <p><a href="#id17"  >18 - Droit de rétractation</a></p>
 
-                <p><a href="#id18" style="color: white">19- Résolution extrajudiciaire</a></p>
+                <p><a href="#id18"  >19- Résolution extrajudiciaire</a></p>
 
-                <p><a href="#id19" style="color: white">20- Litige et droit applicable</a></p>
+                <p><a href="#id19"  >20- Litige et droit applicable</a></p>
 
-                <p><a href="#id20" style="color: white">21 - Protection des données à caractère personnel</a></p>
+                <p><a href="#id20"  >21 - Protection des données à caractère personnel</a></p>
 
-                <p><a href="#id21" style="color: white">22 - Marques déposées ou Propriétés</a></p>
+                <p><a href="#id21"  >22 - Marques déposées ou Propriétés</a></p>
 
-                <p><a href="#id22" style="color: white">23 - Cookies</a></p>
+                <p><a href="#id22"  >23 - Cookies</a></p>
 
             </div>
         <div class="SA">
@@ -761,7 +761,6 @@ div{
 }
 .sommaire{
     text-align:left;
-    
     float:left;
     width:20%;
 }
@@ -782,9 +781,14 @@ div{
     margin-bottom: 30px ;
 }
 
-
-.sommaire:hover p{
-  color: #EAEE59;
-  text-decoration:none;
+a{
+    color:white;
+    text-decoration:none;
 }
+
+a:hover {
+color: #EAEE59;
+text-decoration:none;
+}
+
 </style>
