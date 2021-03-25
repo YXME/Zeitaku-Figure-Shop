@@ -1,4 +1,4 @@
-<template>
+<template class="page-container">
     <article class="page-content">
         <article class="logo">
             <img src="../assets/logos/logo.png" width="35%" height="35%"/>
@@ -35,15 +35,23 @@
 
 
 <style scoped>
+.page-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .page-content {
-    margin: 0 50% 0 50%;
     width: 70%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 15px 0 15px 0;
+    margin: 15px 15% 15px 0;
 }
 
 .logo {
