@@ -732,15 +732,18 @@
                 </p>
             </div>
 
-            <div class="zeitaku">
 
-                Zeitaku Art
-                Tous droits réservés. Les Logos, produits et noms de sociétés mentionnnés sont la propriété de leurs auteurs respectifs.
+        </div>
 
-                Copyright © Zeitaku 2010 - 2021
-            </div>
+        <div class="zeitaku">
+
+            Zeitaku Art
+            Tous droits réservés. Les Logos, produits et noms de sociétés mentionnnés sont la propriété de leurs auteurs respectifs.
+
+            Copyright © Zeitaku 2010-2021
         </div>
     </div>
+
 
 </template>
 
