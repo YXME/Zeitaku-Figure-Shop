@@ -5,7 +5,7 @@
           <section class="section">
             
             <article class="illustration">
-              <img src= "../assets/illu/Broly_photo_accueil.jpg" alt="image1" width="100%" height="100%"/>
+              <img src= "../assets/illu/broly_photo_accueil.jpg" alt="image1" width="100%" height="100%"/>
             </article>
 
             <aside class="text-box">
