@@ -7,6 +7,7 @@ import Cart from '../views/Cart.vue'
 import LoginRegister from '../views/LoginRegister.vue'
 import Livraison from '../views/Livraison.vue'
 import CGV from '../views/CGV.vue'
+import Contact from'../views/Contact.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ const routes = [
     path:'/cgv',
     name:'CGV',
     component: CGV
+  },
+  {
+    path:'/contact',
+    name:'Contact',
+    component: Contact
   }
 ]
 
