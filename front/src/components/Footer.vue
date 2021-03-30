@@ -29,7 +29,7 @@
     </div>
     <div class="footer-bottom">
         <hr class="footer-hr"/>
-        <a href="#"><img src="../assets/logos/logo.png" alt="Logo du site" width="191px" height="75px"/></a>
+        <router-link to="/"><img src="../assets/logos/logo.png" alt="Logo du site" width="191px" height="75px"/></router-link>
         <p class="footer-copyright">© Copyright ZFS - MDC S.A.R.L 2021</p>
     </div>
 </footer>
@@ -39,7 +39,7 @@
 /* footer */
 
 footer {
-  background-color: #303030;
+  background-color: #101010;
   width: 100%;
   height: 270px;
   margin-bottom: 0;
@@ -91,7 +91,7 @@ footer {
 }
 
 .footer-hr {
-  background: grey;
+  color:#303030;
   width: 99%;
   height: 1px;
 }

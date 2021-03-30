@@ -7,6 +7,8 @@ import Cart from '../views/Cart.vue'
 import LoginRegister from '../views/LoginRegister.vue'
 import Livraison from '../views/Livraison.vue'
 import CGV from '../views/CGV.vue'
+import About from '../views/About.vue'
+import Catalogue from '../views/Catalogue.vue'
 
 Vue.use(VueRouter)
 
@@ -19,13 +21,10 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
   },
   {
-    path:'/figure',
+    path:'/figure/:figurename',
     name:'Figure',
     component: Figure
   },
@@ -53,6 +52,11 @@ const routes = [
     path:'/cgv',
     name:'CGV',
     component: CGV
+  },
+  {
+    path:'/catalogue',
+    name:'Catalogue',
+    component: Catalogue
   }
 ]
 

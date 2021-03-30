@@ -6,15 +6,6 @@
                 </router-link> 
             </div>
 
-            <div>
-                <form action="" method="GET" id="search-form" class="search-form">
-                      <input class="search-input" type="text" placeholder=" Que recherchez-vous ?" name="search"/>
-                      <button class="search-button" type="submit" name="button">
-                          <img src="../assets/logos/search-icon.png" class="search-logo"/>
-                        </button>
-                  </form>
-            </div>
-
             <div class="pu">
                 <router-link to="/user">
                     <img src="../assets/logos/user-icon.png" alt="Logo user" width="44px" height="50px"/>
@@ -29,7 +20,7 @@
 
 <style scoped>
 header {
-    background-color: #303030;
+    background-color: #101010;
     width: 100%;
     height: 110px;
     display: flex;
