@@ -52,4 +52,6 @@
     margin-bottom: 30px;
 }
 
+
+Rajouter, un tableau des prix par rapport aux poids des statues, faire du bullshit, mettre des marges au tableau, et un peu plus de texte.
 </style>

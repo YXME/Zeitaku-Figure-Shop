@@ -9,6 +9,7 @@ import Livraison from '../views/Livraison.vue'
 import CGV from '../views/CGV.vue'
 import About from '../views/About.vue'
 import Catalogue from '../views/Catalogue.vue'
+import Contact from'../views/Contact.vue'
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes = [
     path:'/catalogue',
     name:'Catalogue',
     component: Catalogue
+  },
+  {
+    path:'/contact',
+    name:'Contact',
+    component: Contact
   }
 ]
 
