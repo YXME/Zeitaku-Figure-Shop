@@ -24,6 +24,7 @@
 .about{
   color:white;
   margin-bottom: 30px;
+  margin-left:20px;
   text-align:justify;
 }
 
