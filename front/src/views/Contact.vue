@@ -9,7 +9,7 @@
         <input type="text" id="name" name="user_name">
     </div>
     <div>
-        <label for="mail">E-mail :</label>
+        <label for="mail">E-mail :</label>
         <input type="email" id="mail" name="user_mail">
     </div>
     <div class="choix">   
