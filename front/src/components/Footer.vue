@@ -9,7 +9,7 @@
                     <router-link to="/cgv"><p>CGV</p></router-link>
                 </li>
                 <li class="footer-li">
-                    <router-link to="/about"><p>Qui sommes-nous ?</p></router-link>
+                    <router-link to="/about"><p>A propos</p></router-link>
                 </li>
                 <li class="footer-li">
                     <router-link to="/livraisons"><p>Livraisons</p></router-link>

@@ -53,21 +53,14 @@
       </article>
 
       <article class="thebuttonatthefinoflapagina">
-            <button class="catalogue"><routeur-link to="/catalogue">Accedez à notre catalogue </routeur-link></button>
+        <button @click="$router.push('catalogue')" class="catalogue">Accedez à notre catalogue</button>
       </article>
 
     </section>
 </template>
 
 <script>
-/*
-function hide(id){ 
-  document.getElementById(id).style.display = "none";
-}
 
-function show(id){
-  document.getElementById(id).style.display = "block";
-}*/
 </script>
 
 <style scoped>
@@ -100,7 +93,7 @@ function show(id){
 }
 
 .nav{
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -110,7 +103,8 @@ function show(id){
 
 .thebuttonatthefinoflapagina {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 p {
@@ -127,6 +121,7 @@ p, img {
   font-family: Autography, sans-serif;
   font-size: 30px;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
