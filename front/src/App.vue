@@ -31,7 +31,6 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -50,4 +49,12 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@font-face {
+  font-family: 'Autography';
+  src: url(~@/assets/font/Autography.otf) format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 </style>
