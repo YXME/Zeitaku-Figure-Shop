@@ -50,4 +50,13 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@font-face {
+  font-family: "Autography";
+  src: url("../src/assets/font/Autography.otf") format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 </style>
