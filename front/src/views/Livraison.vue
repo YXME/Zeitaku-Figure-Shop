@@ -54,182 +54,220 @@
                     <td width="20%"></td>
                     <td width="20%">●</td>
                 </tr>
+                <tr>
+                    <td width="20%">Afrique</td>
+                    <td width="20%">●</td>
+                    <td width="20%"></td>
+                    <td width="20%"></td>
+                    <td width="20%"></td>
+                </tr>
             </table>
             <br>
             <br>
 
             <table border="1" width="100%">
                 <tr>
-                    <td width="20%" style="font-weight:bold">Continent<br> /<br> Poids du produit</td>
-                    <td width="20%" style="font-weight:bold">Amérique</td>
-                    <td width="20%" style="font-weight:bold">Europe</td>
-                    <td width="20%" style="font-weight:bold">Asie</td>
-                    <td width="20%" style="font-weight:bold">Océanie</td>
+                    <td width="15%" style="font-weight:bold">Continent<br> /<br> Poids du produit</td>
+                    <td width="15%" style="font-weight:bold">Amérique</td>
+                    <td width="15%" style="font-weight:bold">Europe</td>
+                    <td width="15%" style="font-weight:bold">Asie</td>
+                    <td width="15%" style="font-weight:bold">Océanie</td>
+                    <td width="15%" style="font-weight:bold">Afrique</td>
 
                 </tr>
                 <tr>
-                    <td width="20%">de 15 à 25kg</td> <!--ligne du tableau-->
+                    <td width="15%">de 15 à 25kg</td> <!--ligne du tableau-->
 
-                    <td width="20%"> <!-- fonction qui permet de cacher le montant de la statue en Yen, au passage de la souris celle-ci apparait-->
+                    <td width="15%"> <!-- fonction qui permet de cacher le montant de la statue en Yen, au passage de la souris celle-ci apparait-->
                         <a href="#">150€
                             <span>19416¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">50€
                             <span>6472¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">280€
                             <span>36243¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">350€
                             <span>45304¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">280€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="20%">de 25 à 35kg</td>
+                    <td width="15%">de 25 à 35kg</td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">290€
                             <span>37538¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">150€
                             <span>19416¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">360€
                             <span>46598¥</span>
                         </a>
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">490€
                             <span>63426¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">360€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="20%">de 35 à 45kg</td>
+                    <td width="15%">de 35 à 45kg</td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">380€
                             <span>49187¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">250€
                             <span>32360¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">420€
                             <span>54365¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">740€
                             <span>95785¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">420€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="20%">de 45 à 55kg</td>
+                    <td width="15%">de 45 à 55kg</td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">510€
                             <span>66014¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">300€
                             <span>38832¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">750€
                             <span>97080¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">820€
                             <span>106141¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">750€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="20%">de 55 à 65kg</td>
+                    <td width="15%">de 55 à 65kg</td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">640€
                             <span>82841¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">450€
                             <span>58248¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">850€
                             <span>110024¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">900€
                             <span>116496¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">850€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="20%">de 65 à 75kg</td>
+                    <td width="15%">de 65 à 75kg</td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">700€
                             <span>90608¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">500€
                             <span>64720¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">1000€
                             <span>129440¥</span>
                         </a>
                     </td>
 
-                    <td width="20%">
+                    <td width="15%">
                         <a href="#">1500€
                             <span>194160¥</span>
+                        </a>
+                    </td>
+                    <td width="15%">
+                        <a href="#">1000€
+                            <span>6472¥</span>
                         </a>
                     </td>
                 </tr>
