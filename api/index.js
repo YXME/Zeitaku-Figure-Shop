@@ -1,25 +1,26 @@
 const express = require('express');
 const path = require('path');
+
 const app = express(),
       bodyParser = require("body-parser");
       port = 3080;
 
-// place holder for the data
-const users = [];
+const db = require('./queries')
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../front/dist')));
+app.use(express.static(path.join(__dirname, '../front')));
 
 app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../front/public/index.html'));
 });
 
-app.get('/api/users', (req, res) => {
-  console.log('api/users called!')
-  res.json(users);
+app.post('/api/login', (req, res) => {
+  const user = req.body.user;
+  console.log('Adding user:::::', user);
+  users.push(user);
+  res.json("user addedd");
 });
 
-app.post('/api/user', (req, res) => {
+app.post('/api/register', (req, res) => {
   const user = req.body.user;
   console.log('Adding user:::::', user);
   users.push(user);
@@ -29,3 +30,4 @@ app.post('/api/user', (req, res) => {
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);
 });
+

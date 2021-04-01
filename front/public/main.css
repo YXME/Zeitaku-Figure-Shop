@@ -1,11 +1,11 @@
 @font-face {
   font-family: "kashima";
-  src: url("../res/font/kashima.otf") format("otf"),
+  src: url("../src/assets/font/kashima.otf") format("otf"),
 }
 
 @font-face {
   font-family: "MSGothic";
-  src: url("../res/font/msgothic.ttc") format("ttc");
+  src: url("../src/assets/font/msgothic.ttc") format("ttc");
 }
 
 html, head, body, |* {
