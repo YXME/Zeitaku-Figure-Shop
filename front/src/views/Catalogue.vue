@@ -1,12 +1,13 @@
 <template>
-    <div class="main-container">
+   <!--- <div class="main-container">
         <section class="products-section">
             <article v-for="figure in figures" :key="figure.figureid" class="product-container">
                     <router-link to="/figure/{{ figure.figurename }}"><img class="product-illustration" :src=figure.illustration width="80%" height="80%"/></router-link>
                     <router-link to="/figure/{{ figure.figurename }}"><p class="product-title">{{ figure.figurename }}</p></router-link>
             </article>
         </section>
-    </div>
+    </div> --->
+    <h1> test </h1>
 </template>
 
 <script>
