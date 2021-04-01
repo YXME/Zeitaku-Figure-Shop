@@ -13,6 +13,8 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../front/public/index.html'));
 });
 
+app.get('/user', db.getUserById)
+
 app.post('/api/login', (req, res) => {
   const user = req.body.user;
   console.log('Adding user:::::', user);

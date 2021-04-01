@@ -7,6 +7,37 @@ const pool = new Pool({
   port: 5432,
 })
 
+
+CONTACT = X
+CGV = X
+ABOUT => X
+LIVRAISON => X
+
+USER => USER, ORDER
+
+PAYMENT => REGION, COUNTRY, USER, CART, FIGURE, ORDER, SHIPPER, LKCOUNTRYREGION, SHIPPINGFEESREGION
+
+LOGINREGISTER => USER
+
+
+INDEX => FIGURE
+
+FIGURE => FIGURE
+
+
+
+
+CATALOGUE => FIGURE
+
+CART => FIGURE
+
+
+
+
+const registerUser = (request, response) => {
+  const 
+}
+
 const getUserByAuth = (request, response) => {
     const email = request.params.email
     const password = request.params.password
@@ -51,6 +82,12 @@ const getAllUsers = (request, response) => {
 
 const getUserInfoByID = (request, response) => {
   const UserId = request.params.userid
+  pool.query('SELECT * FROM USERS WHERE USERID = $1', [userid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
 }
 
 module.exports = {
