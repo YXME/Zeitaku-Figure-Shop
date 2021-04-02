@@ -1,33 +1,37 @@
-const express = require('express');
-const path = require('path');
+const path = require("path")
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const port = 3000
 
-const app = express(),
-      bodyParser = require("body-parser");
-      port = 3080;
+var cors = require('cors')
+app.use(cors())
 
-const db = require('./queries')
 
-app.use(express.static(path.join(__dirname, '../front')));
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
 
-app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, '../front/public/index.html'));
-});
+const db = require('./queries.js')
 
-app.get('/user', db.getUserById)
+app.use(express.static(path.join(__dirname, '../front/dist')));
 
-app.post('/api/login', (req, res) => {
-  const user = req.body.user;
-  console.log('Adding user:::::', user);
-  users.push(user);
-  res.json("user addedd");
-});
+app.get('/', (request, response) => {
+  res.sendFile(path.join(__dirname, '../front/build/index.html'));
+})
 
-app.post('/api/register', (req, res) => {
-  const user = req.body.user;
-  console.log('Adding user:::::', user);
-  users.push(user);
-  res.json("user addedd");
-});
+app.get('/api/catalogue', db.getFigureCatalogue)
+app.get('/figure/:figureid', db.getFigureById)
+app.get('/cart', db.getDisplayFigureByID)
+
+app.get('/login', db.getUserAuthLogin)
+app.get('/users/:id', db.getUserInfoByID)
+app.get('/admin/users', db.getAllUsers)
+app.post('/register', db.postUserRegister)
+
 
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);

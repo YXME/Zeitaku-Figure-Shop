@@ -320,4 +320,9 @@ a:hover span, a:focus span{
      opacity:1;     
 }
 
+p, h1, td {
+  font-family: Arial, Verdana, sans-serif;
+  color:#fff;
+}
+
 </style>
