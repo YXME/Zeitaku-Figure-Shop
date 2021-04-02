@@ -5,21 +5,21 @@
         <nav class="nav">
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/broly_photo_accueil.jpg">
+              <img class="cropped-version" src="../assets/illu/1.jpg">
               <p>BROLY KING OF DESTRUCTION</p>
             </div>
           </router-link>
 
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/goldorak_photo_1.jpg">
+              <img class="cropped-version" src="../assets/illu/3.jpg">
               <p>GOLDORAK</p>
             </div>
           </router-link>
 
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/madara_photo_1.jpg">
+              <img class="cropped-version" src="../assets/illu/2.jpg">
               <p>MADARA AND KYUBI</p>
             </div>
           </router-link>
@@ -31,21 +31,21 @@
         <nav class="nav">
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/guts_photo_1.jpg">
+              <img class="cropped-version" src="../assets/illu/9.jpg">
               <p>GUTS AND ZOOD VS GANISHKA</p>
             </div>
           </router-link>
 
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/light_photo_1.jpg">
+              <img class="cropped-version" src="../assets/illu/11.jpg">
               <p>LIGHT AND RYUK</p>
             </div>
           </router-link>
 
           <router-link to="#">
             <div class="figure">
-              <img class="cropped-version" src="../assets/illu/livai_photo_1.jpg">
+              <img class="cropped-version" src="../assets/illu/12.jpg">
               <p>LIVAI VS FEMALE TITAN</p>
             </div>
           </router-link>

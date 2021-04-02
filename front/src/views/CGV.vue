@@ -796,4 +796,9 @@ a:hover {
     text-decoration:none;
 }
 
+p, h1, li, i, strong {
+  font-family: Arial, Verdana, sans-serif;
+  color:#fff;
+}
+
 </style>
