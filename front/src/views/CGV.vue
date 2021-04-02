@@ -48,7 +48,6 @@
 
                     <li><a href="#id21">22 - Marques déposées ou Propriétés</a></li>
 
-                    <li><a href="#id22">23 - Cookies</a></li>
                 </ul>
             </nav>
             <div class="content">
@@ -715,20 +714,6 @@
 
                         Zeitaku, IKI by Zeitaku, YOKA by Zeitaku ainsi que le logo Zeitaku sont des marques et éléments déposés. Toute utilisation d’une de ces marques ou éléments ci-dessus énoncés à des fins commerciales, spéculatives sans l’accord préalable de ZFS - MDC S.A.R.L  ou à des fins illégales, obscènes, abusives, menaçantes, diffamatoires, calomnieuses, contrevenantes envers ZFS - MDC S.A.R.L  est donc interdite et passible de poursuites judiciaires.
                     </p>
-                </div>
-
-                <div class="cookie">
-
-                    <p><strong><h4 id="id22">23- COOKIES</h4></strong>
-
-                        Conformément à la législation applicable en matière de protection des données, nous vous informons par la présente que nous utilisons des « cookies ». En utilisant notre site web, vous acceptez notre utilisation des cookies aux fins énoncées ci-dessous conformément à la déclarative relative aux Cookies accessible sur notre site et vous invitons à consulter ladite déclaration.
-                    </p>
-                </div>
-                <div class="zeitaku">
-                    Zeitaku Art
-                    Tous droits réservés. Les Logos, produits et noms de sociétés mentionnnés sont la propriété de leurs auteurs respectifs.
-
-                    Copyright © Zeitaku 2010-2021
                 </div>
 
 
