@@ -51,10 +51,47 @@ export default {
 }
 
 @font-face {
-  font-family: 'Autography';
-  src: url(~@/assets/font/Autography.otf) format('otf');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Autography';
+    src: url('./assets/fonts/Autography.eot');
+    src: url('./assets/fonts/Autography.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Autography.woff2') format('woff2'),
+        url('./assets/fonts/Autography.woff') format('woff'),
+        url('./assets/fonts/Autography.ttf') format('truetype'),
+        url('./assets/fonts/Autography.svg#Autography') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+html, head, body, |* {
+  margin: 0 !important;
+}
+
+body{
+  margin: 0 !important;
+  overflow-x:hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/back.jpg");
+  background-repeat: repeat;
+}
+
+a p{
+  color: white;
+  transition: color 0.3s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover p{
+  color: #EAEE59;
 }
 
 </style>

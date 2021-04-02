@@ -25,7 +25,7 @@ const routes = [
     component: About
   },
   {
-    path:'/figure/:figurename',
+    path:'/figure/:url',
     name:'Figure',
     component: Figure
   },

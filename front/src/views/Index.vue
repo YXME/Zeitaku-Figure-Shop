@@ -118,7 +118,7 @@ p, img {
 
 .title {
   background: -webkit-linear-gradient(#C0AB1C, #EAEE59, #C0AB1C);
-  font-family: Autography, sans-serif;
+  font-family: 'Autography', sans-serif;
   font-size: 30px;
   -webkit-background-clip: text;
   background-clip: text;

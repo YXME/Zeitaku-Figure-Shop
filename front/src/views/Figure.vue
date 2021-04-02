@@ -1,25 +1,16 @@
 <template>
     <div>
-        <!-- création d'un carrousel, et description du produit-->
-        <!-- enlever les effets de liens, changer la police, -->
-        <!-- nom du fabricant, (site amiami), en dessous detail item, viewed item (même licence/ même fabricant), enlever les liens cliquables des fabricants-->
-        <div class="content">
-
+        <div class="content" v-for="figure in figures" :key="figure.figureid">
           <article class="img">
-            <a><img src= "res/images/illu/broly_photo_1.jpg" alt="image1" width="95%" height="95%"></a>
-            <br>
-            <!--<a><img src= "res/images/illu/broly_photo_3.jpg" alt="image2"></a>
-            <br>
-            <a><img src= "res/images/illu/broly_photo_2.jpg" alt="image3"></a>-->
+            <a><img v-bind:src="getImgUrl(figure.figureid)" width="95%" height="95%"></a>
           </article>
-
           <aside class="data">
             <div class="title">
-              <h1>Broly Super Saiyan Légendaire HQS+</h1>
-              <h4>(ブロリー-伝説のスーパーサイヤ人)</h4>
+              <h1>{{ figure.figuretitle.toUpperCase() }}</h1>
+              <h4>({{ figure.figuresubtitle }})</h4>
             </div>
             <div class ="prix">
-              <p class="price-display">1399€</p><p class="price-yens-display">(182,099¥)</p>
+              <p class="price-display">{{ figure.eurprice }}€ </p><p class="price-yens-display">({{ figure.jpyprice }}¥)</p>
             </div>      
 
             <div class="order">
@@ -32,39 +23,60 @@
 
 
         
-        <div class="infos"> <!-- en dessous une descrition de la statue (ctrlc, ctrlv des sites) -->
-          <b>Fabricant</b>: TSUME ART <br>
+        <div class="infos">
+          <b>Fabricant</b>: <p>{{ figure.manufacturer }}</p>
             <hr>
 
-          <b>Licence</b>: DRAGON BALL Z <br>
+          <b>Dimensions</b>: {{ figure.dimensions }} <br>
             <hr>
 
-          <b>Dimensions</b>: 76cm*44cm*68cm <br>
+          <b>Echelle</b>: {{ figure.figurescale }}<br>
             <hr>
 
-          <b>Echelle</b>: 1/4<br>
+          <b>Poids</b>: {{ figure.weight }} <br>
             <hr>
 
-          <b>Poids</b>: 50KG <br>
-            <hr>
-
-          <b>Tirage</b>: 1500 pièces <br>
+          <b>Tirage</b>: {{ figure.limitededition }} <br>
             <hr>
         </div>
         <br/>
         
         <div class="descriptif">
-          <i> Designé par Akira Toriyama mais créé par Shigeyasu Yamauchi, Broly apparaît pour la première fois dans le film "Dragon Ball Z : Broly le super guerrier". Sa popularité lui vaudra un retour dans un autre film : "Dragon Ball Z : Rivaux dangereux".
-
-            Nous avons voulu rendre hommage à sa puissance en adaptant la scène où il domine le combat contre Goku et maintient le héros inerte par la tête.  
-            
-            L'échelle 1/4 met en valeur la stature imposante du guerrier de l'espace et permet d'affiner les détails et les textures des différents éléments du diorama.
-            
-            Une édition collector est aussi disponible et comprend en plus un buste alternatif qui le montre en train de préparer un Kikoha. 
+          <i> 
+            {{ figure.description }}
           </i>
         </div>
     </div>
 </template>
+
+<script>
+import { getFigureById } from '../services/FigureService'
+
+export default {
+  name: 'Figure',
+  data(){
+    return {
+      figure: {},
+      figures: []
+    }
+  },
+  methods: {
+    async getFigureById() {
+        getFigureById(this.$route.params.figureid).then(figures => {
+            this.$set(this,"figures", figures)
+        }).bind(this)
+    },
+    getImgUrl(pet) {
+        var images = require.context('../assets/illu/', false, /\.jpg$/)
+        return images('./' + pet + ".jpg")
+    }
+  },
+  mounted() {
+    this.getFigureById();
+  }
+}
+</script>
+
 
 <style scoped>
 .content {

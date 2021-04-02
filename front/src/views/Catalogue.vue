@@ -2,9 +2,9 @@
    <div class="main-container">
         <section class="products-section">
             <article v-for="figure in figures" :key="figure.figureid" class="product-container">
-                    <router-link :to="{ name: 'Figure', params: { figuretitle: figure.figuretitle, figureid: figure.figureid } }">
+                    <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
                         <img class="product-illustration" v-bind:src="getImgUrl(figure.figureid)" />
-                        <p class="product-title">{{ figure.figuretitle }}</p>
+                        <p class="product-title">{{ figure.figuretitle.toUpperCase() }}</p>
                     </router-link>
             </article>
         </section>
@@ -26,7 +26,6 @@ export default {
   methods: {
     async getFigureCatalogue() {
         getFigureCatalogue().then(figures => {
-            console.log(figures)
             this.$set(this,"figures", figures)
         }).bind(this)
     },

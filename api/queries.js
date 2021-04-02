@@ -34,7 +34,7 @@ CART => FIGURE (nom, illu, prix)
 
 const getFigureCatalogue = (request, response) => {
 
-  pool.query('SELECT FIGUREID, FIGURETITLE, ILLUSTRATION FROM FIGURE', (error, results) => {
+  pool.query('SELECT FIGUREID, FIGURETITLE, URL FROM FIGURE', (error, results) => {
     if (error) {
       throw error
     }
