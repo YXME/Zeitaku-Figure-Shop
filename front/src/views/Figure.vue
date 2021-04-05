@@ -1,56 +1,38 @@
 <template>
-    <div>
-        <div class="content" v-for="figure in figures" :key="figure.figureid">
-          <article class="img">
-            <a><img v-bind:src="getImgUrl(figure.figureid)" width="95%" height="95%"></a>
-          </article>
-          <aside class="data">
-            <div class="title">
-              <h1>{{ figure.figuretitle.toUpperCase() }}</h1>
-              <h4>({{ figure.figuresubtitle }})</h4>
-            </div>
-            <div class ="prix">
-              <p class="price-display">{{ figure.eurprice }}€ </p><p class="price-yens-display">({{ figure.jpyprice }}¥)</p>
-            </div>      
-
-            <div class="order">
-              <form>
-                <button class="add-cart">Ajouter au panier</button>
-              </form>
-            </div>
-          </aside>
-        </div>
-
-
-        
-        <div class="infos">
-          <b>Fabricant</b>: <p>{{ figure.manufacturer }}</p>
-            <hr>
-
-          <b>Dimensions</b>: {{ figure.dimensions }} <br>
-            <hr>
-
-          <b>Echelle</b>: {{ figure.figurescale }}<br>
-            <hr>
-
-          <b>Poids</b>: {{ figure.weight }} <br>
-            <hr>
-
-          <b>Tirage</b>: {{ figure.limitededition }} <br>
-            <hr>
-        </div>
-        <br/>
-        
-        <div class="descriptif">
-          <i> 
-            {{ figure.description }}
-          </i>
-        </div>
+  <div id="div-container">
+    <div class="main-container" v-for="figure in figures" :key="figure.figureid">
+        <article class="image-container">
+          <a><img v-bind:src="getImgUrl(figure.figureid)" class="image"></a>
+        </article>
+        <aside class="main-infos">
+          <section class="title-container">
+            <p class="title-item title">{{ figure.figuretitle.toUpperCase() }}</p>
+            <p class="title-item manufacturer">By {{ figure.manufacturer }}</p>
+            <p class="title-item subtitle">({{ figure.figuresubtitle }})</p>
+          </section>
+          <section class="price-container">
+            <p class="price-item price-display">{{ figure.eurprice }}€</p>
+            <p class="price-item price-yens-display">(env. {{ figure.jpyprice }}¥)</p>
+          </section>
+          <section class="desc-container">
+            <p class="description" >{{ figure.description }}</p>
+          </section>
+          <section class="others-container">
+            <p class="others-item">Dimensions : {{ figure.dimensions }}</p>
+            <p class="others-item">Échelle : {{ figure.figurescale }}</p>
+            <p class="others-item">Poids : {{ figure.weight }} kg</p>
+            <p class="others-item">Tirage limité à  : {{ figure.limitededition }} exemplaires</p>
+          </section>
+          <section class="cart-container">
+            <button class="add-cart">Ajouter au panier</button>
+          </section>
+        </aside>
+      </div>
     </div>
 </template>
 
 <script>
-import { getFigureById } from '../services/FigureService'
+import { getFigureById, getFigureByUrl } from '../services/FigureService'
 
 export default {
   name: 'Figure',
@@ -62,9 +44,17 @@ export default {
   },
   methods: {
     async getFigureById() {
+      if(this.$route.params.figureid == null){
+        getFigureByUrl(this.$route.params.url).then(figures => {
+            this.$set(this,"figures", figures)
+        }).bind(this)
+        console.log("1" + this.$route.params.figureid)
+      }
+      else {
         getFigureById(this.$route.params.figureid).then(figures => {
             this.$set(this,"figures", figures)
         }).bind(this)
+      }
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
@@ -79,95 +69,149 @@ export default {
 
 
 <style scoped>
-.content {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-}
-
-.img{ /*classe relative aux images de la statue*/
-    margin-left:3%;
-    margin-top:50px;
-    width:35%;
-}
-
-
-.infos{ /*données relatives à la statue*/ 
-    color:#fff;
-    font-size:20px;  
-}
-
-.prix { /*prix de la statue en euros et en yen*/
-    color:white;
-    font-size: 30px;
-    display: flex;
-    width: 180px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.data { /*nom de la statue en fr et en jap*/
-    width:45%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-}
-
-.descriptif{
-  color:white;
-  font-family:Arial;
-  margin-left: 20px;
-}
-
-.infos {
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: 5%;
-  margin-right: 5%;
-}
 
 p {
   font-family: Arial, Helvetica, sans-serif;
   color:#fff;
+  text-align: left;
 }
 
-h1 {
-    font-family: kashima, sans-serif;
-    color:#EAEE59;
+.main-container {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-h4 {
-    font-family: MSGothic, sans-serif;
-    color:#949494;
+.image{
+  object-fit: cover;
+  object-position: center;
+  width: 600px;
+  height: 600px;
+}
+
+
+.main-infos {
+  width: 45%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0 -2%;
+}
+
+
+.title-item {
+  margin: 0 2%;
+}
+
+.title {
+  font-family: 'Autography', sans-serif;
+  font-size: 20pt;
+  color:#EAEE59;
+  
+}
+
+.manufacturer {
+  font-size: 15pt;
+  color:white;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-family: 'MSGothic', sans-serif;
+  font-size: 10pt;
+  color:#949494;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 5%-20px;
+}
+
+.price-item {
+  margin: 0 20px;
 }
 
 .price-display {
-    color: #EAEE59;
+  color: #EAEE59;
+  font-size: 23pt;
 }
 
 .price-yens-display{
-    color: #949494;
-    font-size: 14pt;
+  color: #949494;
+  font-size: 10pt;
+}
+
+.desc-container {
+  margin: -2% 0;
+}
+
+.description {
+  font-style: italic;
+}
+
+.others-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: left;
+  justify-content: space-around;
+}
+
+.others-item {
+  margin-right: 5%;
+}
+
+.cart-container {
+  width: 100%;
 }
 
 .add-cart {
+  width: 100%;
   background-color: #EAEE59;
   color: white;
   text-align: center;
-  width: 50%;
   height: 50px;
   font-size: 15pt;
   font-family: Verdana, Arial, sans-serif ;
   border: none;
 }
 
-.descriptif {
+.infos {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 50px;
+  font-size:20px;  
 }
+
+@media (max-width: 900px) { 
+  .image{
+    width: 300px;
+    height: 300px;
+  }
+
+  .main-infos {
+    width: 80%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+}
+
 </style>

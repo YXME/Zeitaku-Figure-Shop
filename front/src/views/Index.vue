@@ -3,21 +3,21 @@
       <article class="article">
         <h1 class="title">COLLECTION TSUME ART</h1>
         <nav class="nav">
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 1 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/1.jpg">
               <p>BROLY KING OF DESTRUCTION</p>
             </div>
           </router-link>
 
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 3 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/3.jpg">
               <p>GOLDORAK</p>
             </div>
           </router-link>
 
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 2 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/2.jpg">
               <p>MADARA AND KYUBI</p>
@@ -29,21 +29,21 @@
       <article class="article">
         <h1 class="title">COLLECTION ONIRI CREATION</h1>
         <nav class="nav">
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 9 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/9.jpg">
               <p>GUTS AND ZOOD VS GANISHKA</p>
             </div>
           </router-link>
 
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 11 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/11.jpg">
               <p>LIGHT AND RYUK</p>
             </div>
           </router-link>
 
-          <router-link to="#">
+          <router-link :to="{ name: 'Figure', params: { figureid: 12 } }">
             <div class="figure">
               <img class="cropped-version" src="../assets/illu/12.jpg">
               <p>LIVAI VS FEMALE TITAN</p>

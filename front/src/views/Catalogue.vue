@@ -1,5 +1,6 @@
 <template>
    <div class="main-container">
+     <p class="title">NOS PRODUITS</p>
         <section class="products-section">
             <article v-for="figure in figures" :key="figure.figureid" class="product-container">
                     <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
@@ -43,13 +44,21 @@ export default {
 <style scoped>
 
 .main-container {
-    margin: 10% 10% 10% 10%;
-    width: 80%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+  background: -webkit-linear-gradient(#C0AB1C, #EAEE59, #C0AB1C);
+  font-family: 'Autography', sans-serif;
+  font-size: 30px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .products-section {

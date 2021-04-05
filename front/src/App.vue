@@ -63,6 +63,18 @@ export default {
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'msgothic';
+    src: url('./assets/fonts/MS-Gothic.eot');
+    src: url('./assets/fonts/MS-Gothic.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/MS-Gothic.woff2') format('woff2'),
+        url('./assets/fonts/MS-Gothic.woff') format('woff'),
+        url('./assets/fonts/MS-Gothic.ttf') format('truetype'),
+        url('./assets/fonts/MS-Gothic.svg#MS-Gothic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 html, head, body, |* {
   margin: 0 !important;

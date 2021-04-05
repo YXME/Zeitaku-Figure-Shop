@@ -62,9 +62,29 @@ const getFigureById = (request, response) => {
   })
 }
 
+const getFigureByUrl = (request, response) => {
+  const url = request.params.url
+  pool.query('SELECT * FROM FIGURE WHERE URL = $1', [url], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+
 
 const postUserRegister = (request, response) => {
   const { email, firstname, lastname, password, address, countryid, regionid }  = request.body
+
+  pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+    if (error) {
+      throw error
+    }
+    if(result.rows[0] != null){
+      res.status(409).send("L'utilisateur existe déjà.");
+    }
+  });
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
     password = hash;
@@ -74,7 +94,13 @@ const postUserRegister = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with ID: ${result.insertId}`)
+    pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+      if (error) {
+        throw error
+      }
+      let token = jwt.sign({ id: user.rows[0].userid }, config.secret, {expiresIn: 86400 });
+      res.status(200).send({ auth: true, token: token, user: result.rows[0] });
+    });
   })
 }
 
@@ -95,12 +121,13 @@ const getUserAuthLogin = (request, response) => {
             
         }
         else {
-          response.status(200).json(results.rows)
+          let token = jwt.sign({ id: result.id }, config.secret, { expiresIn: 86400 // expires in 24 hours
+          });
+          res.status(200).send({ auth: true, token: token, user: response.rows[0] });
         }
       });
     })
 }
-
 
 const getAllUsers = (request, response) => {
 
@@ -132,7 +159,8 @@ module.exports = {
 
   getFigureById,
   getFigureCatalogue, 
-  getDisplayFigureByID
+  getDisplayFigureByID,
+  getFigureByUrl
 
 
 };
