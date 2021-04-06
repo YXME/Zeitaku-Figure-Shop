@@ -10,27 +10,84 @@
                 <p> | </p>
                 <router-link to="/register"><p>S'inscrire</p></router-link>
             </div>
-            <form class="flex-form">
-                <input class="login-register-input" type="text" placeholder="Nom"/>
-                <input class="login-register-input" type="text" placeholder="Prénom"/>
-                <input class="login-register-input" type="text" placeholder="Adresse"/>
-                <input class="login-register-input" type="text" placeholder="Code Postal"/>
-                <input class="login-register-input" type="text" placeholder="Ville"/>
-                <input class="login-register-input" type="text" placeholder="Pays"/>
-                <!-- <select placeholder="Pays" class="login-register-input" v-for="country in countries" :key="country.countryid">
-                    <option value="{{ country.countryid }}">{{ country.countryname }}</option>
-                </select> -->
-                <input class="login-register-input" type="text" placeholder="Adresse e-mail"/>
-                <input class="login-register-input" type="password" placeholder="Mot de passe"/>
-                <button class="confirm-button">Se connecter</button>
-            </form>
+            <div class="flex-form">
+                <input v-model="lastname" class="login-register-input" type="text" placeholder="Nom"/>
+                <input v-model="firstname" class="login-register-input" type="text" placeholder="Prénom"/>
+                <input v-model="address" class="login-register-input" type="text" placeholder="Adresse"/>
+                <input v-model="zipcode" class="login-register-input" type="text" placeholder="Code Postal"/>
+                <input v-model="city" class="login-register-input" type="text" placeholder="Ville"/>
+                <select  v-model="countryid" placeholder="Pays" class="login-register-input">
+                    <option v-for="country in countries" :key="country.countryid" :value="country.countryid">{{ country.countryname }}</option>
+                </select>
+                <input  v-model="email" class="login-register-input" type="text" placeholder="Adresse e-mail"/>
+                <input  v-model="password" class="login-register-input" type="password" placeholder="Mot de passe"/>
+                <button type="click" @click="postUserAuthRegister" class="confirm-button">Se connecter</button>
+            </div>
         </section>
     </article>
 </template>
 
 <script>
+import { getCountryList } from '../services/UserService'
+import { postUserAuthRegister } from '../services/AccountService'
 
+export default {
+  name: 'Register',
+  data(){
+    return {
+        email : "",
+        password : "",
+        lastname : "",
+        firstname : "",
+        address : "",
+        city : "",
+        zipcode : "",
+        countryid : 0,
 
+        country: {},
+        countries: []
+    }
+  },
+  methods: {
+    async getCountryList() {
+      if(this.$route.params.figureid == null){
+        getCountryList().then(countries => {
+            this.$set(this,"countries", countries)
+        }).bind(this)
+      }
+    },
+    async postUserAuthRegister() {
+        if (this.password.length > 0) {
+            postUserAuthRegister(this.email, this.password, this.lastname, this.firstname, this.address, this.city, this.zipcode, this.countryid).then(response => {
+                let clearance = response.user.clearance
+                localStorage.setItem('user',JSON.stringify(response.user))
+                localStorage.setItem('jwt',response.token)
+
+                if (localStorage.getItem('jwt') != null){
+                    this.$emit('loggedIn')
+                    if(this.$route.params.nextUrl != null){
+                        this.$router.push(this.$route.params.nextUrl)
+                    }
+                    else {
+                        if(clearance == 1){
+                            this.$router.push('admin')
+                        }
+                        else {
+                            this.$router.push('user')
+                        }
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        }
+    },
+  },
+  mounted() {
+    this.getCountryList();
+  }
+}
 </script>
 
 
@@ -141,8 +198,8 @@ a:hover p{
 }
 
 .login-register-input:focus {
-    box-shadow: 0 0 5px lightblue;
-    border: 1px solid lightblue;
+    box-shadow: 0 0 5px lightskyblue;
+    border: 2px solid lightskyblue;
     outline: none;
 }
 

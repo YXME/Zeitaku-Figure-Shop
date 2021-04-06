@@ -119,7 +119,6 @@ p {
   font-family: 'Autography', sans-serif;
   font-size: 20pt;
   color:#EAEE59;
-  
 }
 
 .manufacturer {

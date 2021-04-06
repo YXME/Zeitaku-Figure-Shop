@@ -1,41 +1,32 @@
 <template>
     <div class="info-user">
         <table cellpadding="20">
-            
-            <br>
-        
             <thead> <!-- En-tête du tableau -->
                 <tr>
-                    <th>Commande</th>
-
-                    <th>Date</th>
-
-                    <th>Etat du paiement</th>
-
+                    <th>Commande n°</th>
+                    <th>Date de commande</th>
+                    <th>État du paiement</th>
                     <th>Statut d'exécution</th>
-
                     <th>Total</th>
                 </tr>
             </thead>
-        
-            <tbody> <!-- Corps du tableau -->
-                    <tr>
-                        <td>Carmen</td>
-                        <td>33 ans</td>
-                        <td>Espagne</td>
-                        <td>full</td>
-                        <td>1234</td>
-                    </tr>
-                    <tr>
-                        <td>Michelle</td>
-                        <td>26 ans</td>
-                        <td>États-Unis</td>
-                        <td>full</td>
-                        <td>5678</td>
-                    </tr>
+            <tbody>
+                <tr>
+                    <td>Carmen</td>
+                    <td>33 ans</td>
+                    <td>Espagne</td>
+                    <td>full</td>
+                    <td>1234</td>
+                </tr>
+                <tr>
+                    <td>Michelle</td>
+                    <td>26 ans</td>
+                    <td>États-Unis</td>
+                    <td>full</td>
+                    <td>5678</td>
+                </tr>
             </tbody>
         </table>
-
 
         <div class="account-details">
             <p>Informations personnelles</p>
@@ -46,12 +37,10 @@
             <br>
             code postal<br>
             pays<br>
-            téléphone<br>
-            <br><br>
 
             <div class=" log-out">
                 <form>
-                    <button class="log-out">Log Out</button>
+                    <button class="log-out">Déconnexion</button>
                 </form>
                 
             </div>

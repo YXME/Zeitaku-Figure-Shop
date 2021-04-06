@@ -76,9 +76,10 @@ const getFigureByUrl = (request, response) => {
 
 
 
-const postUserRegister = (request, response) => {
-  const { email, firstname, lastname, password, address, countryid, regionid }  = request.body
-
+const postUserAuthRegister = (request, response) => {
+  const { email, firstname, lastname, password, address, city, zipcode, countryid }  = request.query
+  let temphash = ""
+  let tempregid
   pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
     if (error) {
       throw error
@@ -88,54 +89,47 @@ const postUserRegister = (request, response) => {
     }
   });
 
-  bcrypt.hash(password, saltRounds, function(err, hash) {
-    password = hash;
-  });
+  pool.query('SELECT REGIONID FROM LKCOUNTRYREGION WHERE COUNTRYID = $1', [countryid], (error, result) => {
+    const regionid = result.rows[0].regionid
+  
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+      const hashpassword  = hash;
 
-  pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, 0)', [email, firstname, lastname, password, address, countryid, regionid], (error, results) => {
-    if (error) {
-      throw error
-    }
-    pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
-      if (error) {
-        throw error
-      }
-      let token = jwt.sign({ id: user.rows[0].userid }, config.secret, {expiresIn: 86400 });
-      res.status(200).send({ auth: true, token: token, user: result.rows[0] });
+      pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 0)', [email, firstname, lastname, hashpassword, address, city, zipcode, countryid, regionid], (error, results) => {
+        if (error) {
+          throw error
+        }
+        pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+          if (error) {
+            throw error
+          }
+          let token = jwt.sign({ id: result.rows[0].userid }, config.secret, {expiresIn: 86400 });
+          response.status(200).send({ auth: true, token: token, user: result.rows[0] });
+        });
+      })
     });
   })
 }
 
 const postUserAuthLogin = (request, response) => {
     const {email, password} = request.query
-
-
-    console.log(email)
-    console.log(password)
     pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, results) => {
       if (error) {
         throw error
       }
       if(results == null){
         res.status(404).send("L'utilisateur existe déjà.");
-        console.log(1);
       }
-      bcrypt.hash(password, saltRounds, (error, res) => {
-        console.log(res)
-      })
       
       bcrypt.compare(password, results.rows[0].password, function(err, result){
         if(err) {
           throw err
         }
         if(!result){
-          console.log(2);
           return response.json({success: false, message: 'passwords do not match'});
         }
         else {
-          console.log(3);
-          let token = jwt.sign({ id: result.id }, config.secret, { expiresIn: 86400 // expires in 24 hours
-          });
+          let token = jwt.sign({ id: result.id }, config.secret, { expiresIn: 86400 });
           response.status(200).send({ auth: true, token: token, user: results.rows[0] });
         }
       });
@@ -192,16 +186,26 @@ const getFigureOrderList = (request, response) => {
   })
 }
 
+const getCountryList = (request, response) => {
+  pool.query('SELECT * FROM COUNTRY', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 
 
 module.exports = {
   postUserAuthLogin,
   getUserInfoByID,
   getAllUsers,
-  postUserRegister,
+  postUserAuthRegister,
   getOrderByUserId,
   getOrderById,
   getFigureOrderList,
+  getCountryList,
 
   getFigureById,
   getFigureCatalogue, 

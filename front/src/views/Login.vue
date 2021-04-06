@@ -36,8 +36,6 @@
             async postUserAuthLogin() {
                 if (this.password.length > 0) {
                     postUserAuthLogin(this.email, this.password).then(response => {
-                        console.log(42)
-                        console.log(response)
                         let clearance = response.user.clearance
                         localStorage.setItem('user',JSON.stringify(response.user))
                         localStorage.setItem('jwt',response.token)
@@ -174,8 +172,8 @@ a:hover p{
 }
 
 .login-register-input:focus {
-    box-shadow: 0 0 5px lightblue;
-    border: 1px solid lightblue;
+    box-shadow: 0 0 5px lightskyblue;
+    border: 2px solid lightskyblue;
     outline: none;
 }
 

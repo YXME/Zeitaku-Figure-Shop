@@ -26,13 +26,14 @@ app.get('/api/catalogue', db.getFigureCatalogue)
 app.get('/figureid/:figureid', db.getFigureById)
 app.get('/figure/:url', db.getFigureByUrl)
 app.get('/cart', db.getDisplayFigureByID)
+app.get('/countrylist', db.getCountryList)
 
 app.get('/login', db.postUserAuthLogin)
 app.get('/users/:id', db.getUserInfoByID)
 app.get('/orders/:id', db.getOrderByUserId)
 app.get('/order/:id', db.getOrderById)
 app.get('/admin/users', db.getAllUsers)
-app.post('/register', db.postUserRegister)
+app.get('/register', db.postUserAuthRegister)
 
 
 app.listen(port, () => {
