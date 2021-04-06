@@ -94,7 +94,7 @@ th {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-start;
     font-family: Verdana, Arial, sans-serif;
 }

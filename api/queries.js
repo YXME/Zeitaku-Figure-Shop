@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
+const jwt = require('jsonwebtoken');
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
@@ -8,6 +9,7 @@ const pool = new Pool({
   password: 'admin',
   port: 5432,
 })
+const config = require('./config.js')
 
 /*
 CONTACT = X
@@ -104,26 +106,37 @@ const postUserRegister = (request, response) => {
   })
 }
 
+const postUserAuthLogin = (request, response) => {
+    const {email, password} = request.query
 
-const getUserAuthLogin = (request, response) => {
-    const email = request.params.email
-    const password = request.params.password
 
+    console.log(email)
+    console.log(password)
     pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, results) => {
       if (error) {
         throw error
       }
-      bcrypt.compare(password, results.rows.password, function(err, result){
+      if(results == null){
+        res.status(404).send("L'utilisateur existe déjà.");
+        console.log(1);
+      }
+      bcrypt.hash(password, saltRounds, (error, res) => {
+        console.log(res)
+      })
+      
+      bcrypt.compare(password, results.rows[0].password, function(err, result){
         if(err) {
           throw err
         }
         if(!result){
-            
+          console.log(2);
+          return response.json({success: false, message: 'passwords do not match'});
         }
         else {
+          console.log(3);
           let token = jwt.sign({ id: result.id }, config.secret, { expiresIn: 86400 // expires in 24 hours
           });
-          res.status(200).send({ auth: true, token: token, user: response.rows[0] });
+          response.status(200).send({ auth: true, token: token, user: results.rows[0] });
         }
       });
     })
@@ -141,7 +154,37 @@ const getAllUsers = (request, response) => {
 
 const getUserInfoByID = (request, response) => {
   const UserId = request.params.userid
-  pool.query('SELECT * FROM UTILISATEUR, ORDERS WHERE UTILISATEUR.USERID = ORDERS.USERID AND UTILISATEUR.USERID = $1', [userid], (error, results) => {
+  pool.query('SELECT * FROM UTILISATEUR WHERE USERID = $1', [userid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getOrderByUserId = (request, response) => {
+  const UserId = request.params.userid
+  pool.query('SELECT * FROM ORDERS WHERE USERID = $1', [userid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getOrderById = (request, response) => {
+  const orderid = request.params.orderid
+  pool.query('SELECT * FROM ORDERS WHERE ORDERID = $1', [orderid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getFigureOrderList = (request, response) => {
+  const orderid = request.params.orderid
+  pool.query('SELECT F.FIGUREID, F.FIGURETITLE, F.URL, F.EURPRICE FROM FIGURE F, ORDER O, LKFIGUREORDER LK WHERE = LK.ORDERID = $1 AND F.FIGUREID = LK.FIGUREID', [orderid], (error, results) => {
     if (error) {
       throw error
     }
@@ -152,10 +195,13 @@ const getUserInfoByID = (request, response) => {
 
 
 module.exports = {
-  getUserAuthLogin,
+  postUserAuthLogin,
   getUserInfoByID,
   getAllUsers,
   postUserRegister,
+  getOrderByUserId,
+  getOrderById,
+  getFigureOrderList,
 
   getFigureById,
   getFigureCatalogue, 

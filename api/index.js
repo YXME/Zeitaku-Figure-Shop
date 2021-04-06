@@ -1,12 +1,9 @@
 const path = require("path")
 const express = require('express')
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken');
 const app = express()
 const port = 3000
-
-const router = express.Router()
-
-
 
 const allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -30,14 +27,12 @@ app.get('/figureid/:figureid', db.getFigureById)
 app.get('/figure/:url', db.getFigureByUrl)
 app.get('/cart', db.getDisplayFigureByID)
 
-app.get('/login', db.getUserAuthLogin)
+app.get('/login', db.postUserAuthLogin)
 app.get('/users/:id', db.getUserInfoByID)
+app.get('/orders/:id', db.getOrderByUserId)
+app.get('/order/:id', db.getOrderById)
 app.get('/admin/users', db.getAllUsers)
 app.post('/register', db.postUserRegister)
-
-
-
-
 
 
 app.listen(port, () => {

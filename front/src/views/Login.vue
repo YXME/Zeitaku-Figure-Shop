@@ -10,18 +10,60 @@
                 <p> | </p>
                 <router-link to="/register"><p>S'inscrire</p></router-link>
             </div>
-            <form class="flex-form">
-                <input class="login-register-input" type="text" placeholder="Adresse e-mail"/>
-                <input class="login-register-input" type="password" placeholder="Mot de passe"/>
-                <button class="confirm-button">Se connecter</button>
-            </form>
+            <div class="flex-form">
+                <label for="email"></label>
+                <input v-model="email" id="email" class="login-register-input" type="text" placeholder="Adresse e-mail"/>
+                <label for="password" ></label>
+                <input v-model="password" id="password" class="login-register-input" type="password" placeholder="Mot de passe"/>
+                <button type="click" @click="postUserAuthLogin" class="confirm-button">Se connecter</button>
+            </div>
         </section>
     </article>
 </template>
 
 <script>
 
+    import { postUserAuthLogin } from '../services/AccountService'
 
+    export default {
+        data(){
+            return {
+                email : "",
+                password : ""
+            }
+        },
+        methods : {
+            async postUserAuthLogin() {
+                if (this.password.length > 0) {
+                    postUserAuthLogin(this.email, this.password).then(response => {
+                        console.log(42)
+                        console.log(response)
+                        let clearance = response.user.clearance
+                        localStorage.setItem('user',JSON.stringify(response.user))
+                        localStorage.setItem('jwt',response.token)
+
+                        if (localStorage.getItem('jwt') != null){
+                            this.$emit('loggedIn')
+                            if(this.$route.params.nextUrl != null){
+                                this.$router.push(this.$route.params.nextUrl)
+                            }
+                            else {
+                                if(clearance == 1){
+                                    this.$router.push('admin')
+                                }
+                                else {
+                                    this.$router.push('user')
+                                }
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+                }
+            },
+        }
+    }
 </script>
 
 

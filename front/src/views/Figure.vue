@@ -124,7 +124,7 @@ p {
 
 .manufacturer {
   font-size: 15pt;
-  color:white;
+  color:949494;
   font-weight: bold;
 }
 

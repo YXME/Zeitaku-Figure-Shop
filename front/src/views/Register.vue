@@ -17,9 +17,9 @@
                 <input class="login-register-input" type="text" placeholder="Code Postal"/>
                 <input class="login-register-input" type="text" placeholder="Ville"/>
                 <input class="login-register-input" type="text" placeholder="Pays"/>
-                <select placeholder="Pays" class="login-register-input" v-for="country in countries" :key="country.countryid">
+                <!-- <select placeholder="Pays" class="login-register-input" v-for="country in countries" :key="country.countryid">
                     <option value="{{ country.countryid }}">{{ country.countryname }}</option>
-                </select>
+                </select> -->
                 <input class="login-register-input" type="text" placeholder="Adresse e-mail"/>
                 <input class="login-register-input" type="password" placeholder="Mot de passe"/>
                 <button class="confirm-button">Se connecter</button>
