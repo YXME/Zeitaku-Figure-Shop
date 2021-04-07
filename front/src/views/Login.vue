@@ -36,6 +36,8 @@
             async postUserAuthLogin() {
                 if (this.password.length > 0) {
                     postUserAuthLogin(this.email, this.password).then(response => {
+                        console.log(response)
+                        console.log(response.user)
                         let clearance = response.user.clearance
                         localStorage.setItem('user',JSON.stringify(response.user))
                         localStorage.setItem('jwt',response.token)
