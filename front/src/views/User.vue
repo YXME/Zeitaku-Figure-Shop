@@ -1,7 +1,7 @@
 <template>
     <div class="info-user">
         <table cellpadding="20">
-            <thead> <!-- En-tête du tableau -->
+            <thead>
                 <tr>
                     <th>Commande n°</th>
                     <th>Date de commande</th>
@@ -11,42 +11,78 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Carmen</td>
-                    <td>33 ans</td>
-                    <td>Espagne</td>
-                    <td>full</td>
-                    <td>1234</td>
+                <tr v-for="order in orders" :key="order.orderid">
+                    <td>{{ order.orderid }}</td>
+                    <td>{{ order.orderdate }}</td>
+                    <td>{{ order.orderpaymentstatus }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.grandtotal }}</td>
                 </tr>
-                <tr>
-                    <td>Michelle</td>
-                    <td>26 ans</td>
-                    <td>États-Unis</td>
-                    <td>full</td>
-                    <td>5678</td>
+                <tr v-if="!orders.lengh" >
+                    <td colspan="5">Aucune commande trouvée.</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="account-details">
+        <div v-for="user in users" :key="user.userid" class="account-details">
             <p>Informations personnelles</p>
-            <p>AZERTY uiop<br>
-            adresse*<br>
-            @mail <br>
-            ville<br>
-            <br>
-            code postal<br>
-            pays<br>
-
-            <div class=" log-out">
-                <form>
-                    <button class="log-out">Déconnexion</button>
-                </form>
-                
-            </div>
+            <p>{{ user.firstname }} {{user.lastname.toUpperCase() }}</p>
+            <p>{{ user.email }}</p>
+            <p>{{ user.address }}</p>
+            <p v-if="user.zipcode">{{ user.zipcode }} {{user.city}} </p>
+            <p v-else>{{ user.city }}</p>
+            <!-- <p> {{ countries.filter(function(o){ if (o.countryid == user.countryid) return o }) }}</p> -->
+        </div>
+        <div>
+            <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
         </div>
     </div>
 </template>
+
+<script>
+import { getUserInfoByID, getOrdersByUserId, getCountryList } from '../services/UserService'
+
+export default ({
+name: 'User',
+  data() {
+      return {
+          order: {},
+          orders: [],
+          user: {},
+          users: [],
+          countries: [], 
+          localuser: JSON.parse(localStorage.getItem('user'))
+      }
+  },
+  methods: {
+    async disconnectUser() {
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('user')
+        this.$router.push({ path: '/' })
+    },
+    async getUserInfoByID() {
+        getUserInfoByID(this.localuser.userid).then(users => {
+            console.log(users)
+            this.$set(this,"users", users)
+        })
+    },
+    async getOrdersByUserId() {
+        getOrdersByUserId(this.localuser.userid).then(orders => {
+            this.$set(this,"orders", orders)
+        })
+    },
+    async getCountryList() {
+        getCountryList().then(countries => { this.$set(this,"countries", countries) })
+    },
+  },
+  mounted() {
+    this.getUserInfoByID();
+    this.getOrdersByUserId();
+    this.getCountryList();
+  }
+})
+</script>
+
 
 <style scoped>
 .info-user {

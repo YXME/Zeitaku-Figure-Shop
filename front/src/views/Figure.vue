@@ -47,13 +47,13 @@ export default {
       if(this.$route.params.figureid == null){
         getFigureByUrl(this.$route.params.url).then(figures => {
             this.$set(this,"figures", figures)
-        }).bind(this)
+        })
         console.log("1" + this.$route.params.figureid)
       }
       else {
         getFigureById(this.$route.params.figureid).then(figures => {
             this.$set(this,"figures", figures)
-        }).bind(this)
+        })
       }
     },
     getImgUrl(pet) {

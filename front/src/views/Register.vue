@@ -11,6 +11,7 @@
                 <router-link to="/register"><p>S'inscrire</p></router-link>
             </div>
             <div class="flex-form">
+                <p class= "errormessage" v-if="error">{{ message }}</p>
                 <input v-model="lastname" class="login-register-input" type="text" placeholder="Nom"/>
                 <input v-model="firstname" class="login-register-input" type="text" placeholder="Prénom"/>
                 <input v-model="address" class="login-register-input" type="text" placeholder="Adresse"/>
@@ -21,7 +22,7 @@
                 </select>
                 <input  v-model="email" class="login-register-input" type="text" placeholder="Adresse e-mail"/>
                 <input  v-model="password" class="login-register-input" type="password" placeholder="Mot de passe"/>
-                <button type="click" @click="postUserAuthRegister" class="confirm-button">Se connecter</button>
+                <button type="click" @click="postUserAuthRegister" class="confirm-button">S'inscrire</button>
             </div>
         </section>
     </article>
@@ -35,29 +36,30 @@ export default {
   name: 'Register',
   data(){
     return {
-        email : "",
-        password : "",
-        lastname : "",
-        firstname : "",
-        address : "",
-        city : "",
-        zipcode : "",
+
+        email : null,
+        password : null,
+        lastname : null,
+        firstname : null,
+        address : null,
+        city : null,
+        zipcode : null,
         countryid : 0,
 
         country: {},
-        countries: []
+        countries: [],
+
+        error: false,
+        message: null
     }
   },
   methods: {
     async getCountryList() {
-      if(this.$route.params.figureid == null){
-        getCountryList().then(countries => {
-            this.$set(this,"countries", countries)
-        }).bind(this)
-      }
+        getCountryList().then(countries => { this.$set(this,"countries", countries) }).bind(this)
     },
     async postUserAuthRegister() {
-        if (this.password.length > 0) {
+        this.error = false
+        if (this.password && this.email && this.lastname && this.firstname && this.address && this.city && this.countryid) {
             postUserAuthRegister(this.email, this.password, this.lastname, this.firstname, this.address, this.city, this.zipcode, this.countryid).then(response => {
                 let clearance = response.user.clearance
                 localStorage.setItem('user',JSON.stringify(response.user))
@@ -77,10 +79,18 @@ export default {
                         }
                     }
                 }
-            })
-            .catch(function (error) {
-                console.error(error);
+            }, err => 
+            {
+                this.error = true
+                this.message = err.response.data.message
+                console.error(err);
+            }).catch(function(err){
+                console.error(err);
             });
+        }
+        else {
+            this.error = true
+            this.message = "Tout les champs doivent être remplis."
         }
     },
   },
@@ -184,6 +194,11 @@ a, p{
     font-size: 15px;
     color: white;
 }
+
+.errormessage {
+    color: red;
+}
+
 
 a:visited {
     text-decoration: none;
