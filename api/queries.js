@@ -74,41 +74,38 @@ const getFigureByUrl = (request, response) => {
   })
 }
 
-
-
 const postUserAuthRegister = (request, response) => {
   const { email, firstname, lastname, password, address, city, zipcode, countryid }  = request.query
-  let temphash = ""
-  let tempregid
   pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
     if (error) {
       throw error
     }
     if(result.rows[0] != null){
-      res.status(409).send("L'utilisateur existe déjà.");
+      status = false
+      return response.status(409).send({ success: false, message: "L'utilisateur existe déjà."});     
     }
-  });
 
-  pool.query('SELECT REGIONID FROM LKCOUNTRYREGION WHERE COUNTRYID = $1', [countryid], (error, result) => {
-    const regionid = result.rows[0].regionid
+    pool.query('SELECT REGIONID FROM LKCOUNTRYREGION WHERE COUNTRYID = $1', [countryid], (error, result) => {
+      const regionid = result.rows[0].regionid
+    
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        const hashpassword  = hash;
   
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-      const hashpassword  = hash;
-
-      pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 0)', [email, firstname, lastname, hashpassword, address, city, zipcode, countryid, regionid], (error, results) => {
-        if (error) {
-          throw error
-        }
-        pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+        pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 0)', [email, firstname, lastname, hashpassword, address, city, zipcode, countryid, regionid], (error, results) => {
           if (error) {
             throw error
           }
-          let token = jwt.sign({ id: result.rows[0].userid }, config.secret, {expiresIn: 86400 });
-          response.status(200).send({ auth: true, token: token, user: result.rows[0] });
-        });
-      })
-    });
-  })
+          pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+            if (error) {
+              throw error
+            }
+            let token = jwt.sign({ id: result.rows[0].userid }, config.secret, {expiresIn: 86400 });
+            response.status(200).send({ auth: true, token: token, user: result.rows[0] });
+          });
+        })
+      });
+    })
+  });
 }
 
 const postUserAuthLogin = (request, response) => {
@@ -117,8 +114,8 @@ const postUserAuthLogin = (request, response) => {
       if (error) {
         throw error
       }
-      if(results == null){
-        res.status(404).send("L'utilisateur existe déjà.");
+      if(results.rows.length == 0){
+        return response.status(404).send({ success: false, message: "L'utilisateur n'existe pas" });
       }
       
       bcrypt.compare(password, results.rows[0].password, function(err, result){
@@ -126,7 +123,7 @@ const postUserAuthLogin = (request, response) => {
           throw err
         }
         if(!result){
-          return response.json({success: false, message: 'passwords do not match'});
+          return response.status(401).send({success: false, message: 'Le mot de passe est incorrect'});
         }
         else {
           let token = jwt.sign({ id: result.id }, config.secret, { expiresIn: 86400 });
@@ -147,7 +144,7 @@ const getAllUsers = (request, response) => {
 }
 
 const getUserInfoByID = (request, response) => {
-  const UserId = request.params.userid
+  const userid = request.params.userid
   pool.query('SELECT * FROM UTILISATEUR WHERE USERID = $1', [userid], (error, results) => {
     if (error) {
       throw error
@@ -157,7 +154,7 @@ const getUserInfoByID = (request, response) => {
 }
 
 const getOrderByUserId = (request, response) => {
-  const UserId = request.params.userid
+  const userid = request.params.userid
   pool.query('SELECT * FROM ORDERS WHERE USERID = $1', [userid], (error, results) => {
     if (error) {
       throw error
@@ -211,6 +208,4 @@ module.exports = {
   getFigureCatalogue, 
   getDisplayFigureByID,
   getFigureByUrl
-
-
 };

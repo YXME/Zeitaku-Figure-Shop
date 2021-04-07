@@ -11,6 +11,7 @@
                 <router-link to="/register"><p>S'inscrire</p></router-link>
             </div>
             <div class="flex-form">
+                <p class= "errormessage" v-if="error">{{ message }}</p>
                 <label for="email"></label>
                 <input v-model="email" id="email" class="login-register-input" type="text" placeholder="Adresse e-mail"/>
                 <label for="password" ></label>
@@ -28,13 +29,16 @@
     export default {
         data(){
             return {
-                email : "",
-                password : ""
+                email : null,
+                password : null,
+                error : false,
+                message : null
             }
         },
         methods : {
             async postUserAuthLogin() {
-                if (this.password.length > 0) {
+                this.iserror = false
+                if (this.password && this.email) {
                     postUserAuthLogin(this.email, this.password).then(response => {
                         let clearance = response.user.clearance
                         localStorage.setItem('user',JSON.stringify(response.user))
@@ -46,7 +50,7 @@
                                 this.$router.push(this.$route.params.nextUrl)
                             }
                             else {
-                                if(clearance == 1){
+                                if (clearance == 1){
                                     this.$router.push('admin')
                                 }
                                 else {
@@ -54,10 +58,20 @@
                                 }
                             }
                         }
-                    })
-                    .catch(function (error) {
-                        console.error(error);
+                        else {
+                            this.error = true
+                            this.message = response.message
+                            console.log(response)
+                        }
+                    }, err => {
+                        this.error = true
+                        this.message = err.response.data.message
+                        console.error(err);
                     });
+                }
+                else {
+                    this.error = true
+                    this.message = "Tout les champs doivent être remplis."
                 }
             },
         }
@@ -157,6 +171,10 @@ a, p{
     font-family: Arial, Verdana, sans-serif;
     font-size: 15px;
     color: white;
+}
+
+.errormessage {
+    color: red;
 }
 
 a:visited {

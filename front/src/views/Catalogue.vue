@@ -28,7 +28,7 @@ export default {
     async getFigureCatalogue() {
         getFigureCatalogue().then(figures => {
             this.$set(this,"figures", figures)
-        }).bind(this)
+        })
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
