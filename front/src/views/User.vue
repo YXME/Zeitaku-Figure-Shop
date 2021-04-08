@@ -18,23 +18,24 @@
                     <td>{{ order.status }}</td>
                     <td>{{ order.grandtotal }}</td>
                 </tr>
-                <tr v-if="!orders.lengh" >
+                <tr v-if="!orders.lenght" >
                     <td colspan="5">Aucune commande trouvée.</td>
                 </tr>
             </tbody>
         </table>
 
         <div v-for="user in users" :key="user.userid" class="account-details">
-            <p>Informations personnelles</p>
+            <h4>Informations personnelles</h4>
             <p>{{ user.firstname }} {{user.lastname.toUpperCase() }}</p>
             <p>{{ user.email }}</p>
             <p>{{ user.address }}</p>
             <p v-if="user.zipcode">{{ user.zipcode }} {{user.city}} </p>
             <p v-else>{{ user.city }}</p>
-            <!-- <p> {{ countries.filter(function(o){ if (o.countryid == user.countryid) return o }) }}</p> -->
-        </div>
+            <p> {{ countries.find(element => element.countryid == user.countryid).countryname }}</p>
         <div>
+            <button type="click" @click="disconnectUser" class="log-out">Modifier</button>
             <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
+        </div>
         </div>
     </div>
 </template>
@@ -50,7 +51,7 @@ name: 'User',
           orders: [],
           user: {},
           users: [],
-          countries: [], 
+          countries: [],
           localuser: JSON.parse(localStorage.getItem('user'))
       }
   },
@@ -122,27 +123,69 @@ th {
     justify-content: flex-end;
     align-items: flex-start;
     font-family: Verdana, Arial, sans-serif;
+    line-height: 0;
 }
 
 .log-out {
+    width: 95%;
+    height: 40px;
     background-color: #EAEE59;
     color: white;
     text-align: center;
     margin-bottom:10px;
-    font-size: 15pt;
+    font-size: 13pt;
     font-family: Verdana, Arial, sans-serif ;
     border: none;
 }
 
-.commander{
-        background-color: #EAEE59;
-        color: white;
-        text-align: center;
-        margin-bottom:10px;
-        margin-left:100px;
-        font-size: 15pt;
-        font-family: Verdana, Arial, sans-serif ;
-        border: none;
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
 </style>
 

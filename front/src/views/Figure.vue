@@ -24,7 +24,8 @@
             <p class="others-item">Tirage limité à  : {{ figure.limitededition }} exemplaires</p>
           </section>
           <section class="cart-container">
-            <button class="add-cart">Ajouter au panier</button>
+            <p v-if="confirmation" class="errormessage" >Vous ne pouvez commander qu'une seule fois cette figurine</p>
+            <button type="click" @click="addToCart(figure, quantity)" class="add-cart">Ajouter au panier</button>
           </section>
         </aside>
       </div>
@@ -38,6 +39,7 @@ export default {
   name: 'Figure',
   data(){
     return {
+      confirmation: false,
       figure: {},
       figures: []
     }
@@ -48,7 +50,6 @@ export default {
         getFigureByUrl(this.$route.params.url).then(figures => {
             this.$set(this,"figures", figures)
         })
-        console.log("1" + this.$route.params.figureid)
       }
       else {
         getFigureById(this.$route.params.figureid).then(figures => {
@@ -59,6 +60,38 @@ export default {
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
         return images('./' + pet + ".jpg")
+    },
+    addToCart(figure){
+      this.confirmation = false
+      if (localStorage.getItem('jwt') == null) 
+      {
+        this.$router.push({
+          path: '/login',
+          params: { nextUrl: '/cart' }
+        })
+      }
+      else {
+        if(localStorage.getItem('cart') == null)
+        {
+          localStorage.setItem('cart', JSON.stringify(new Array(figure)))
+          this.$router.push('/cart')
+        }
+        else {
+          var cart = JSON.parse(localStorage.getItem('cart'));
+          if(!(cart instanceof Array)){
+            cart = [cart]; 
+          }
+
+          if(cart.includes(figure)){
+            this.confirmation = true
+          }
+          else {
+            cart.push(figure);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            this.$router.push('/cart')
+          }
+        }
+      }
     }
   },
   mounted() {
@@ -195,6 +228,11 @@ p {
   margin-right: 5%;
   font-size:20px;  
 }
+
+.errormessage {
+    color: red;
+}
+
 
 @media (max-width: 900px) { 
   .image{

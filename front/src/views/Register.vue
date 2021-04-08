@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async getCountryList() {
-        getCountryList().then(countries => { this.$set(this,"countries", countries) }).bind(this)
+        getCountryList().then(countries => { this.$set(this,"countries", countries) })
     },
     async postUserAuthRegister() {
         this.error = false
@@ -188,11 +188,11 @@ h2 {
 a, p{
     margin-left: 20px;
     margin-right: 20px;
-    color: white;
+    color: lightgray;
     transition: color 0.3s;
     font-family: Arial, Verdana, sans-serif;
     font-size: 15px;
-    color: white;
+    color: lightgray;
 }
 
 .errormessage {

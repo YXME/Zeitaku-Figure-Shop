@@ -95,7 +95,7 @@ const postUserAuthRegister = (request, response) => {
           if (error) {
             throw error
           }
-          pool.query('SELECT * FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+          pool.query('SELECT EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
             if (error) {
               throw error
             }
