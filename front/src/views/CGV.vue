@@ -1,56 +1,55 @@
 <template>
     <div class="cgv">
-         <nav class="sommaire">
-                <ul>
-                    <li><u>Sommaire des présentes conditions générales :</u></li>
+         <!-- <nav class="sommaire">
+            <ul>
+                <li><u>Sommaire des présentes conditions générales :</u></li>
 
-                    <li><a href="#liens">1 - Définitions</a></li>
+                <li><a href="#liens">1 - Définitions</a></li>
 
-                    <li><a href="#id1">2 - Identification</a></li>
+                <li><a href="#id1">2 - Identification</a></li>
 
-                    <li><a href="#id2">3 - Objet et dispositions générales</a></li>
+                <li><a href="#id2">3 - Objet et dispositions générales</a></li>
 
-                    <li><a href="#id3">4 - Entrée en vigueur et modification des conditions générales de vente</a></li>
+                <li><a href="#id3">4 - Entrée en vigueur et modification des conditions générales de vente</a></li>
 
-                    <li><a href="#id4">5 - Informations sur les produits</a></li>
+                <li><a href="#id4">5 - Informations sur les produits</a></li>
 
-                    <li><a href="#id5">6 - Précommande-Commande</a></li>
+                <li><a href="#id5">6 - Précommande-Commande</a></li>
 
-                    <li><a href="#id6">7 - Prix</a></li>
+                <li><a href="#id6">7 - Prix</a></li>
 
-                    <li><a href="#id7">8 - Modalités de paiement</a></li>
+                <li><a href="#id7">8 - Modalités de paiement</a></li>
 
-                    <li><a href="#id8">9 - Disponibilité des produits</a></li>
+                <li><a href="#id8">9 - Disponibilité des produits</a></li>
 
-                    <li><a href="#id9">10 - Liste d’attente</a></li>
+                <li><a href="#id9">10 - Liste d’attente</a></li>
 
-                    <li><a href="#id10">11 - Délais de livraison</a></li>
+                <li><a href="#id10">11 - Délais de livraison</a></li>
 
-                    <li><a href="#id11">12 - Modalités de livraison</a></li>
+                <li><a href="#id11">12 - Modalités de livraison</a></li>
 
-                    <li><a href="#id12">13 - Garanties Légales</a></li>
+                <li><a href="#id12">13 - Garanties Légales</a></li>
 
-                    <li><a href="#id13">14 - Support SAV</a></li>
+                <li><a href="#id13">14 - Support SAV</a></li>
 
-                    <li><a href="#id14">15 - Annulation</a></li>
+                <li><a href="#id14">15 - Annulation</a></li>
 
-                    <li><a href="#id15">16 - Clause de réserve de propriété</a></li>
+                <li><a href="#id15">16 - Clause de réserve de propriété</a></li>
 
-                    <li><a href="#id16">17 - Responsabilité</a></li>
+                <li><a href="#id16">17 - Responsabilité</a></li>
 
-                    <li><a href="#id17">18 - Droit de rétractation</a></li>
+                <li><a href="#id17">18 - Droit de rétractation</a></li>
 
-                    <li><a href="#id18">19- Résolution extrajudiciaire</a></li>
+                <li><a href="#id18">19- Résolution extrajudiciaire</a></li>
 
-                    <li><a href="#id19">20- Litige et droit applicable</a></li>
+                <li><a href="#id19">20- Litige et droit applicable</a></li>
 
-                    <li><a href="#id20">21 - Protection des données à caractère personnel</a></li>
+                <li><a href="#id20">21 - Protection des données à caractère personnel</a></li>
 
-                    <li><a href="#id21">22 - Marques déposées ou Propriétés</a></li>
-X
-                </ul>
-            </nav>
-            <div class="content">
+                <li><a href="#id21">22 - Marques déposées ou Propriétés</a></li>
+            </ul>
+        </nav> -->
+        <div class="content">
             <div class="SA">
                 <h1>Conditions Générales de Vente SA Zeitaku</h1>
 
@@ -736,54 +735,42 @@ p, li{
 
 ul, p {
     list-style: none;
-    width: 100%;
 }
 
 li {
-    margin-bottom: 2%
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
 }
 
 .cgv{
-    margin-left: 1%;
     text-align: left;
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;
+    flex-direction: column;
+    margin: 1%;
 }
 
 .sommaire{
     text-align:left;
-    float:left;
-    width:20%;
+    overflow-wrap: break-word;
 }
 
 .content {
-    overflow-y: scroll;
     overflow-x: hidden;
-    height: 800px;
-    width: 80%;
     overflow-wrap: break-word;
 }
 
 .general {
     text-align:left justify;
-    margin-left: 25%;
-    width: 80%;
 }
 
 .SA {
     text-align:left justify;
-    margin-left: 25%;
-    width: 80%;
 }
 
 .zeitaku {
     text-align:center;
     flex-direction: column;
     font-size: 9px;
-    margin-bottom: 30px ;
-    width: 80%;
 }
 
 a {

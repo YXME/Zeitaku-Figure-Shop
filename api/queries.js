@@ -214,8 +214,6 @@ const getShippingFeesByRegion = (request, response) => {
 
 const postOrder = (request, response) => {
   const { userid, shipperid, date, grandtotal }  = request.query
-   console.log(request.query.cart)
-
   var cart = JSON.parse(request.query.cart)
   pool.query("INSERT INTO ORDERS (USERID, SHIPPERID, ORDERSTATUS, ORDERDATE, ORDERPAYMENTSTATUS, GRANDTOTAL) VALUES ($1, $2, 'Confirmée', $3, 'En traitement', $4)", [userid, shipperid, date, grandtotal], (error, results) => {
     if (error) {
@@ -231,7 +229,6 @@ const postOrder = (request, response) => {
         else {
           const orderid = results.rows[0].orderid
           cart.forEach(element => {
-            console.log(element)
             pool.query('INSERT INTO LKFIGUREORDER VALUES($1, $2)', [orderid, element.figureid], (error, results) => {
               if (error) {
                 console.log(error)
