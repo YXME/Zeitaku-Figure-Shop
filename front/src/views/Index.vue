@@ -3,52 +3,28 @@
       <article class="article">
         <h1 class="title">COLLECTION TSUME ART</h1>
         <nav class="nav">
-          <router-link :to="{ name: 'Figure', params: { figureid: 1 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/1.jpg">
-              <p>BROLY KING OF DESTRUCTION</p>
-            </div>
-          </router-link>
-
-          <router-link :to="{ name: 'Figure', params: { figureid: 3 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/3.jpg">
-              <p>GOLDORAK</p>
-            </div>
-          </router-link>
-
-          <router-link :to="{ name: 'Figure', params: { figureid: 2 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/2.jpg">
-              <p>MADARA AND KYUBI</p>
-            </div>
-          </router-link>
+          <div v-for="figure in tsumefigure" :key="figure.figureid">
+            <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
+              <div class="figure">
+                <img class="cropped-version" v-bind:src="getImgUrl(figure.figureid)" />
+                <p class="product-title">{{ figure.figuretitle.toUpperCase() }}</p>
+              </div>
+            </router-link>
+          </div>
         </nav>
       </article>
 
       <article class="article">
         <h1 class="title">COLLECTION ONIRI CREATION</h1>
         <nav class="nav">
-          <router-link :to="{ name: 'Figure', params: { figureid: 9 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/9.jpg">
-              <p>GUTS AND ZOOD VS GANISHKA</p>
-            </div>
-          </router-link>
-
-          <router-link :to="{ name: 'Figure', params: { figureid: 11 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/11.jpg">
-              <p>LIGHT AND RYUK</p>
-            </div>
-          </router-link>
-
-          <router-link :to="{ name: 'Figure', params: { figureid: 12 } }">
-            <div class="figure">
-              <img class="cropped-version" src="../assets/illu/12.jpg">
-              <p>LIVAI VS FEMALE TITAN</p>
-            </div>
-          </router-link>
+          <div v-for="figure in onirifigure" :key="figure.figureid">
+            <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
+              <div class="figure">
+                <img class="cropped-version" v-bind:src="getImgUrl(figure.figureid)" />
+                <p class="product-title">{{ figure.figuretitle.toUpperCase() }}</p>
+              </div>
+            </router-link>
+          </div>
         </nav>
       </article>
 
@@ -60,7 +36,37 @@
 </template>
 
 <script>
+import { getFigureCatalogue } from '../services/FigureService'
 
+
+export default {
+  name: 'Index',
+  data() {
+      return {
+          figure: {},
+          tsumefigure: [],
+          onirifigure: [],
+      }
+  },
+  methods: {
+    async getFigureCatalogue() {
+        getFigureCatalogue().then(figures => {
+            this.$set(this,"figures", figures)
+            console.log(figures)
+            this.tsumefigure = figures.slice(0, 4)
+            this.onirifigure = figures.slice(7, 11)
+            console.log(this.tsumefigure)
+        })
+    },
+    getImgUrl(pet) {
+        var images = require.context('../assets/illu/', false, /\.jpg$/)
+        return images('./' + pet + ".jpg")
+    }
+  },
+  mounted() {
+    this.getFigureCatalogue();
+  }
+}
 </script>
 
 <style scoped>
