@@ -21,6 +21,19 @@ export async function getOrder(orderid) {
     return await response.data;
 }
 
+export async function updatePassword(userid, newpassword) {
+    console.log(userid)
+    console.log(newpassword)
+    const response = await axios.get('http://localhost:3000/change-password', {
+        params: {
+            userid: userid,
+            newpassword: newpassword
+        }
+    });
+    console.log(response.data)
+    return await response.data;
+}
+
 export async function getFigureOrderList(orderid) {
     const response = await axios.get('http://localhost:3000/orderlist/' + orderid);
     return await response.data;

@@ -11,29 +11,6 @@ const pool = new Pool({
 })
 const config = require('./config.js')
 
-/*
-CONTACT = X
-CGV = X
-ABOUT => X
-LIVRAISON => X
-
-
-
-PAYMENT => REGION, COUNTRY, USER, CART, FIGURE, ORDER, SHIPPER, LKCOUNTRYREGION, SHIPPINGFEESREGION
-
-LOGINREGISTER => USER POST
-
-USER => USER, ORDER, COUNTRY, REGION 
-
-INDEX => FIGURE (nom, illu)
-
-FIGURE => FIGURE (all)
-
-CATALOGUE => FIGURE (nom, illu)
-
-CART => FIGURE (nom, illu, prix)
-*/
-
 const getFigureCatalogue = (request, response) => {
 
   pool.query('SELECT FIGUREID, FIGURETITLE, URL FROM FIGURE', (error, results) => {
@@ -132,6 +109,22 @@ const postUserAuthLogin = (request, response) => {
       });
     })
 }
+
+const changePassword = (request, response) => {
+  const { userid, newpassword } = request.query
+  bcrypt.hash(newpassword, saltRounds, (err, hash) => {
+    if(err) {
+      throw err
+    }
+    pool.query('UPDATE UTILISATEUR SET PASSWORD = $2 WHERE USERID = $1', [userid, hash], (error, results) => {
+      if (error) {
+        throw error
+      }
+      return response.status(200).json({ succes: true })
+    })
+  });
+}
+
 
 const getAllUsers = (request, response) => {
 
@@ -262,5 +255,6 @@ module.exports = {
 
   getShipperByRegion,
   getShippingFeesByRegion,
-  postOrder
+  postOrder,
+  changePassword
 };

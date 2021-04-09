@@ -18,7 +18,7 @@
                     <td>{{ order.orderstatus }}</td>
                     <td>{{ order.grandtotal }}€</td>
                 </tr>
-                <tr v-if="!orders.lenght" >
+                <tr v-if="!orders.length" >
                     <td colspan="5">Aucune commande trouvée.</td>
                 </tr>
             </tbody>
@@ -33,7 +33,7 @@
             <p v-else>{{ localuser.city }}</p>
             <p> {{ countries.find(element => element.countryid == localuser.countryid).countryname }}</p>
             <div>
-                <button type="click" @click="disconnectUser" class="log-out">Modifier</button>
+                <button type="click" @click="changePassword" class="log-out">Modifier le mot de passe</button>
                 <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
             </div>
         </div>
@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import { getOrdersByUserId, getCountryList } from '../services/UserService'
+import { getOrdersByUserId, getCountryList, updatePassword } from '../services/UserService'
+
 
 export default ({
 name: 'User',
@@ -54,10 +55,19 @@ name: 'User',
       }
   },
   methods: {
-    async disconnectUser() {
+    disconnectUser() {
         localStorage.removeItem('jwt')
         localStorage.removeItem('user')
         this.$router.push({ path: '/' })
+    },
+    async changePassword(){
+      var newPassword = prompt("Entrez votre nouveau mot de passe :");
+      if (newPassword == null || newPassword == "") {
+        return;
+      } else {
+        updatePassword(this.localuser.userid, newPassword)
+        alert("Votre mot de passe a été modifié.")
+      }
     },
     async getOrdersByUserId() {
         console.log(this.localuser.userid)
@@ -130,13 +140,10 @@ th {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   table {
     border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
+    width: 92%;
   }
   
   table thead {
@@ -164,10 +171,6 @@ th {
   }
   
   table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
     content: attr(data-label);
     float: left;
     font-weight: bold;
@@ -176,6 +179,14 @@ th {
   
   table td:last-child {
     border-bottom: 0;
+  }
+  
+  .account-details {
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    margin-left: 0;
   }
 }
 </style>

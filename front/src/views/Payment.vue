@@ -118,7 +118,7 @@ name: 'Payment',
             });
         }
         else {
-            console.log("error")
+            alert("Merci de remplir tout les champs.")
         }
     }
   },

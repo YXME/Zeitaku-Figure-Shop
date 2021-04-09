@@ -37,7 +37,8 @@ app.get('/register', db.postUserAuthRegister)
 
 app.get('/shipperlist/:regionid', db.getShipperByRegion)
 app.get('/shipperfees/:regionid', db.getShippingFeesByRegion)
-app.post('/confirm-order', db.postOrder)
+app.get('/change-password', db.changePassword)
+app.get('/confirm-order', db.postOrder)
 
 
 app.listen(port, () => {
