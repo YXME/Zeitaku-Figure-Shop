@@ -12,11 +12,11 @@
             </thead>
             <tbody>
                 <tr v-for="order in orders" :key="order.orderid">
-                    <td>{{ order.orderid }}</td>
+                    <td>#{{ order.orderid }}</td>
                     <td>{{ order.orderdate }}</td>
                     <td>{{ order.orderpaymentstatus }}</td>
-                    <td>{{ order.status }}</td>
-                    <td>{{ order.grandtotal }}</td>
+                    <td>{{ order.orderstatus }}</td>
+                    <td>{{ order.grandtotal }}€</td>
                 </tr>
                 <tr v-if="!orders.lenght" >
                     <td colspan="5">Aucune commande trouvée.</td>
@@ -24,24 +24,24 @@
             </tbody>
         </table>
 
-        <div v-for="user in users" :key="user.userid" class="account-details">
+        <div v-if="localuser" class="account-details">
             <h4>Informations personnelles</h4>
-            <p>{{ user.firstname }} {{user.lastname.toUpperCase() }}</p>
-            <p>{{ user.email }}</p>
-            <p>{{ user.address }}</p>
-            <p v-if="user.zipcode">{{ user.zipcode }} {{user.city}} </p>
-            <p v-else>{{ user.city }}</p>
-            <p> {{ countries.find(element => element.countryid == user.countryid).countryname }}</p>
-        <div>
-            <button type="click" @click="disconnectUser" class="log-out">Modifier</button>
-            <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
-        </div>
+            <p>{{ localuser.firstname }} {{localuser.lastname.toUpperCase() }}</p>
+            <p>{{ localuser.email }}</p>
+            <p>{{ localuser.address }}</p>
+            <p v-if="localuser.zipcode">{{ localuser.zipcode }} {{localuser.city}} </p>
+            <p v-else>{{ localuser.city }}</p>
+            <p> {{ countries.find(element => element.countryid == localuser.countryid).countryname }}</p>
+            <div>
+                <button type="click" @click="disconnectUser" class="log-out">Modifier</button>
+                <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import { getUserInfoByID, getOrdersByUserId, getCountryList } from '../services/UserService'
+import { getOrdersByUserId, getCountryList } from '../services/UserService'
 
 export default ({
 name: 'User',
@@ -49,8 +49,6 @@ name: 'User',
       return {
           order: {},
           orders: [],
-          user: {},
-          users: [],
           countries: [],
           localuser: JSON.parse(localStorage.getItem('user'))
       }
@@ -61,13 +59,8 @@ name: 'User',
         localStorage.removeItem('user')
         this.$router.push({ path: '/' })
     },
-    async getUserInfoByID() {
-        getUserInfoByID(this.localuser.userid).then(users => {
-            console.log(users)
-            this.$set(this,"users", users)
-        })
-    },
     async getOrdersByUserId() {
+        console.log(this.localuser.userid)
         getOrdersByUserId(this.localuser.userid).then(orders => {
             this.$set(this,"orders", orders)
         })
@@ -77,7 +70,6 @@ name: 'User',
     },
   },
   mounted() {
-    this.getUserInfoByID();
     this.getOrdersByUserId();
     this.getCountryList();
   }
@@ -93,8 +85,7 @@ name: 'User',
     align-items: center;
     color: white;
     width: 100%;
-    margin-top: 20px;
-    margin-left:20px;
+    margin: 5%;
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
 }

@@ -23,7 +23,7 @@
                 <tr>
                     <td colspan="3">
                         <p>Total : {{ subtotal }}€</p>
-                        <button type="click" class="order">Commander</button>
+                        <button type="click" @click="makeOrder()" class="order">Commander</button>
                     </td>
                 </tr>
             </tfoot>
@@ -50,7 +50,7 @@ export default {
         if(this.cart != null){
             this.cart.forEach(element => {
             this.subtotal += element.eurprice
-        });
+            });
         }
     },
     isEmpty() {
@@ -68,6 +68,10 @@ export default {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
         return images('./' + pet + ".jpg")
     },
+    makeOrder(){
+        localStorage.setItem('subtotal', this.subtotal)
+        this.$router.push('payment')
+    }
   },
   mounted() {
       this.getCart();
@@ -94,16 +98,16 @@ export default {
 }
 
 table {
-    border-collapse: collapse;
+    border: none;
 }
 
 td {
-    border: 1px solid white;
+    border: none;
     margin-right: 5px;
 }
 
 th {
-    border: 1px solid white;
+    border: none;
     margin-left: 5px;
     margin-right: 5px;
 }

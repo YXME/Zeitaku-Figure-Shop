@@ -267,7 +267,7 @@
                     </td>
                     <td width="15%">
                         <a href="#">1000€
-                            <span>6472¥</span>
+                            <span>129440¥</span>
                         </a>
                     </td>
                 </tr>

@@ -35,6 +35,10 @@ app.get('/order/:id', db.getOrderById)
 app.get('/admin/users', db.getAllUsers)
 app.get('/register', db.postUserAuthRegister)
 
+app.get('/shipperlist/:regionid', db.getShipperByRegion)
+app.get('/shipperfees/:regionid', db.getShippingFeesByRegion)
+app.post('/confirm-order', db.postOrder)
+
 
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);

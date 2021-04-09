@@ -8,6 +8,7 @@ export async function getUserInfoByID(userid) {
 export async function getCountryList() {
     const response = await axios.get('http://localhost:3000/countrylist');
     return await response.data;
+
 }
 
 export async function getOrdersByUserId(userid) {

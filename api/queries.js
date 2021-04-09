@@ -192,6 +192,60 @@ const getCountryList = (request, response) => {
   })
 }
 
+const getShipperByRegion = (request, response) => {
+  const regionid = request.params.regionid
+  pool.query('SELECT S.SHIPPERID, S.SHIPPERNAME FROM SHIPPER S, LKSHIPPINGREGION SR WHERE S.SHIPPERID = SR.SHIPPERID AND SR.REGIONID = $1', [regionid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const getShippingFeesByRegion = (request, response) => {
+  const regionid = request.params.regionid
+  pool.query('SELECT * FROM SHIPPINGFEESREGION WHERE REGIONID = $1', [regionid], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const postOrder = (request, response) => {
+  const { userid, shipperid, date, grandtotal }  = request.query
+   console.log(request.query.cart)
+
+  var cart = JSON.parse(request.query.cart)
+  pool.query("INSERT INTO ORDERS (USERID, SHIPPERID, ORDERSTATUS, ORDERDATE, ORDERPAYMENTSTATUS, GRANDTOTAL) VALUES ($1, $2, 'Confirmée', $3, 'En traitement', $4)", [userid, shipperid, date, grandtotal], (error, results) => {
+    if (error) {
+      console.log(error)
+      return response.status(500).send({ success: false, message: "Insertion impossible" });
+    }
+    else {
+      pool.query('SELECT ORDERID FROM ORDERS WHERE USERID = $1 AND ORDERDATE = $2', [userid, date], (error, results) => {
+        if (error) {
+          console.log(error)
+          return response.status(500).send({ success: false, message: "Commande introuvable" });
+        }
+        else {
+          const orderid = results.rows[0].orderid
+          cart.forEach(element => {
+            console.log(element)
+            pool.query('INSERT INTO LKFIGUREORDER VALUES($1, $2)', [orderid, element.figureid], (error, results) => {
+              if (error) {
+                console.log(error)
+                return response.status(500).send({ success: false, message: "Insertions impossible" });
+              }
+            });
+          });
+          return response.status(200).send({ orderid: orderid })
+        }
+      });
+    }
+  });
+}
+
 
 
 module.exports = {
@@ -207,5 +261,9 @@ module.exports = {
   getFigureById,
   getFigureCatalogue, 
   getDisplayFigureByID,
-  getFigureByUrl
+  getFigureByUrl,
+
+  getShipperByRegion,
+  getShippingFeesByRegion,
+  postOrder
 };
