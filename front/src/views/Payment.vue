@@ -111,7 +111,7 @@ name: 'Payment',
         if(this.selectedShipper && this.fees && this.grandtotal && this.cardnumber && this.cvv && this.lastname && this.expdate){
             postOrder(this.localuser.userid, this.selectedShipper, new Date().toISOString(), this.grandtotal, JSON.stringify(this.cart)).then(result => {
                 alert("Votre commande a été prise en compte, votre numéro de commande est : " + result.orderid)
-                localStorage.
+                localStorage.removeItem('cart')
                 this.$router.push('user');
             }, error => {
                 alert("Un problème technique est survenu, nous vous prions de bien vouloir réessayer dans quelques instants, code erreur : " + error)
