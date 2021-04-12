@@ -12,6 +12,7 @@ import About from '../views/About.vue'
 import Catalogue from '../views/Catalogue.vue'
 import Contact from'../views/Contact.vue'
 import Payment from'../views/Payment.vue'
+import Order from'../views/Order.vue'
 import Admin from'../views/Admin.vue'
 import NotFound from'../views/NotFound.vue'
 
@@ -115,12 +116,20 @@ const routes = [
     }
   },
   {
+    path:'/order/:orderid',
+    name:'Order',
+    component: Order,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
     path: '/admin',
     name: 'admin',
     component: Admin,
     meta: {
         requiresAuth: true,
-        is_admin : true
+        clearance : true
     }
   },
   {

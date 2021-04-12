@@ -40,8 +40,6 @@
                 this.iserror = false
                 if (this.password && this.email) {
                     postUserAuthLogin(this.email, this.password).then(response => {
-                        console.log(response)
-                        console.log(response.user)
                         let clearance = response.user.clearance
                         localStorage.setItem('user',JSON.stringify(response.user))
                         localStorage.setItem('jwt',response.token)
@@ -63,7 +61,6 @@
                         else {
                             this.error = true
                             this.message = response.message
-                            console.log(response)
                         }
                     }, err => {
                         this.error = true

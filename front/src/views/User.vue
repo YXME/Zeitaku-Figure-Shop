@@ -12,8 +12,12 @@
             </thead>
             <tbody>
                 <tr v-for="order in orders" :key="order.orderid">
-                    <td>#{{ order.orderid }}</td>
-                    <td>{{ order.orderdate }}</td>
+                    <td>
+                        <router-link :to="{ name: 'Order', params: { orderid: order.orderid } }">
+                            <p>#{{ order.orderid }}</p>
+                        </router-link>
+                    </td>
+                    <td>{{ order.orderdate.substring(0,10) }}</td>
                     <td>{{ order.orderpaymentstatus }}</td>
                     <td>{{ order.orderstatus }}</td>
                     <td>{{ order.grandtotal }}€</td>
@@ -31,8 +35,12 @@
             <p>{{ localuser.address }}</p>
             <p v-if="localuser.zipcode">{{ localuser.zipcode }} {{localuser.city}} </p>
             <p v-else>{{ localuser.city }}</p>
-            <p> {{ countries.find(element => element.countryid == localuser.countryid).countryname }}</p>
-            <div>
+            <p> {{ selectedCountry }}</p>
+            <div v-if="localuser.clearance === 1">
+                <button type="click" @click="$router.push('admin')" class="log-out">Gestion des commandes</button>
+                <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
+            </div>
+            <div v-else>
                 <button type="click" @click="changePassword" class="log-out">Modifier le mot de passe</button>
                 <button type="click" @click="disconnectUser" class="log-out">Déconnexion</button>
             </div>
@@ -51,6 +59,7 @@ name: 'User',
           order: {},
           orders: [],
           countries: [],
+          selectedCountry: "",
           localuser: JSON.parse(localStorage.getItem('user'))
       }
   },
@@ -70,13 +79,15 @@ name: 'User',
       }
     },
     async getOrdersByUserId() {
-        console.log(this.localuser.userid)
-        getOrdersByUserId(this.localuser.userid).then(orders => {
-            this.$set(this,"orders", orders)
+        getOrdersByUserId(this.localuser.userid).then(result => {
+            this.orders = result
         })
     },
     async getCountryList() {
-        getCountryList().then(countries => { this.$set(this,"countries", countries) })
+        getCountryList().then(result => { 
+          this.countries = result
+          this.selectedCountry = this.countries.find(x => x.countryid === this.localuser.countryid).countryname 
+        })
     },
   },
   mounted() {
@@ -116,7 +127,7 @@ th {
 }
 
 .account-details {
-    margin-left: 100px;
+    margin-left: 1%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -137,6 +148,23 @@ th {
     font-size: 13pt;
     font-family: Verdana, Arial, sans-serif ;
     border: none;
+}
+
+a p{
+  color: white;
+  transition: color 0.3s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover p{
+  color: #EAEE59;
 }
 
 

@@ -11,7 +11,6 @@ export async function getShippingFeesByRegion(regionid) {
 }
 
 export async function postOrder(userid, shipperid, date, grandtotal, cart) {
-  console.log(shipperid)
   const response = await axios.get('http://localhost:3000/confirm-order', {
     params: {
     userid: userid,

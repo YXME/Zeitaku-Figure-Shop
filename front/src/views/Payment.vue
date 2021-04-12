@@ -85,13 +85,13 @@ name: 'Payment',
         this.selectedCountry = this.countries.find(element => element.countryid === tempcountryid).countryname
     },
     async getShipperByRegion() {
-        getShipperByRegion(this.localuser.regionid).then(shippers => { this.$set(this,"shippers", shippers) })
+        getShipperByRegion(this.localuser.regionid).then(result => { this.shippers = result })
     },
     async getShippingFeesByRegion() {
-        getShippingFeesByRegion(this.localuser.regionid).then(shipperfees => { this.$set(this,"shipperfees", shipperfees) })
+        getShippingFeesByRegion(this.localuser.regionid).then(result => { this.shipperfees = result })
     },
     async getCountryList() {
-        getCountryList().then(countries => { this.$set(this,"countries", countries) })
+        getCountryList().then(result => { this.countries = result })
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)

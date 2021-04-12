@@ -26,8 +26,8 @@ export default {
   },
   methods: {
     async getFigureCatalogue() {
-        getFigureCatalogue().then(figures => {
-            this.$set(this,"figures", figures)
+        getFigureCatalogue().then(result => {
+            this.figures = result
         })
     },
     getImgUrl(pet) {

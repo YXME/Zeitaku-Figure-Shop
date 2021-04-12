@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async getCountryList() {
-        getCountryList().then(countries => { this.$set(this,"countries", countries) })
+        getCountryList().then(result => { this.countries = result })
     },
     async postUserAuthRegister() {
         this.error = false
