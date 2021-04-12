@@ -122,16 +122,14 @@ export default {
 }
 
 table {
-    border: none;
+    border: collapse;
 }
 
 td {
-    border: none;
     margin-right: 5px;
 }
 
 th {
-    border: none;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -165,7 +163,7 @@ th {
   background-color: #EAEE59;
   color: white;
   text-align: center;
-  height: 25px;
+  height: 30px;
   font-size: 15pt;
   font-family: Verdana, Arial, sans-serif ;
   border: none;
@@ -186,5 +184,47 @@ a:link {
 
 a:hover p{
   color: #EAEE59;
+}
+
+@media screen and (max-width: 900px) {
+  table {
+    border: 0;
+    width: 92%;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
 </style>
