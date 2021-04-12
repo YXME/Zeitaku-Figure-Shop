@@ -2,7 +2,7 @@
 
     <div class ="tab">
         
-        <h1> Tarifs applicables pour le transport de nos statues</h1>
+        <h1>FRAIS DE PORT</h1>
 
         <p>
             La liste ci-dessous présente les différents transporteurs prenant en charge la livraison des colis sur chaque continent. Pour rechercher le tarif applicable dans votre pays de résidence, merci de vous référer au tarif en vigueur sur le contient relatif au pays souhaité.<br>
@@ -323,6 +323,15 @@ a:hover span, a:focus span{
 p, h1, td {
   font-family: Arial, Verdana, sans-serif;
   color:#fff;
+}
+
+h1{
+    background: -webkit-linear-gradient(#C0AB1C, #EAEE59, #C0AB1C);
+  font-family: 'Autography', sans-serif;
+  font-size: 30px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 </style>
