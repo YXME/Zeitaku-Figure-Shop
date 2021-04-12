@@ -107,7 +107,7 @@ const postUserAuthLogin = (request, response) => {
             return response.status(401).send({success: false, message: 'Le mot de passe est incorrect'});
           }
           else {
-            pool.query('SELECT EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, results) => {
+            pool.query('SELECT USERID, EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, results) => {
               if (error) {
                 console.log(error)
               }
@@ -272,17 +272,18 @@ const postOrder = (request, response) => {
           return response.status(500).send({ success: false, message: "Commande introuvable" });
         }
         else {
-          cart.forEach(element => {
-            pool.query('INSERT INTO LKFIGUREORDER VALUES($1, $2)', [orderid, element.figureid], (error, result) => {
-              if (error) {
-                console.log(error)
-                return response.status(500).send({ success: false, message: "Insertions impossible" });
-              }
-              else {
-                return response.status(200).send({ orderid: results.rows[0].orderid })
-              }
+          try {
+            cart.forEach(element => {
+              pool.query('INSERT INTO LKFIGUREORDER VALUES($1, $2)', [results.rows[0].orderid, element.figureid], (error, result) => {
+              });
             });
-          });
+            return response.status(200).send({ orderid: results.rows[0].orderid })
+          }
+          catch (error) {
+            console.log(error)
+            pool.query('DELETE FROM ORDERS WHERE ORDERID = $1', [results.rows[0].orderid])
+            return response.status(500).send({ success: false, message: "Insertions impossible" });
+          }
         }
       });
     }

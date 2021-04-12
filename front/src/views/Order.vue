@@ -1,6 +1,6 @@
 <template>
     <section class="panier">
-        <h2>Commande n° {{ orderdetails.orderid }}</h2>
+        <h2>Commande n°{{ orderdetails.orderid }}</h2>
         <table cellpadding="35">
             <thead>
                 <tr>
@@ -55,7 +55,7 @@ export default {
         })
     },
     async VerifyUser(){
-        if(!this.orderdetails.userid == this.localuser.userid || !this.localuser.clearance == 1) {
+        if(!this.orderdetails.userid == this.localuser.userid && !this.localuser.clearance == 1) {
             this.$router.push('/NotFound')
         }
     },

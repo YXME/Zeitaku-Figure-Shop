@@ -104,9 +104,11 @@ name: 'User',
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     color: white;
     width: 100%;
-    margin: 5%;
+    margin: 5% 1% 5% 1%;
+
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
 }
