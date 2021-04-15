@@ -51,7 +51,7 @@
         </nav> -->
         <div class="content">
             <div class="SA">
-                <h1>Conditions Générales de Vente SA Zeitaku</h1>
+                <center><h1>CONDITIONS GENERALES DE VENTE SA ZEITAKU</h1></center>
 
                 <p>
                     <strong>A l'attention de nos clients résidants aux Royaume-Uni:
@@ -786,6 +786,15 @@ a:hover {
 p, h1, li, i, strong {
   font-family: Arial, Verdana, sans-serif;
   color:#fff;
+}
+
+h1{
+    background: -webkit-linear-gradient(#C0AB1C, #EAEE59, #C0AB1C);
+  font-family: 'Autography', sans-serif;
+  font-size: 30px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 </style>

@@ -4,6 +4,7 @@
   "description": "",
   "main": "sample.js",
   "dependencies": {
+    "@vue/composition-api": "^1.0.0-rc.6",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
