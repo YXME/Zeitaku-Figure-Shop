@@ -24,16 +24,21 @@
             <p class="others-item">Tirage limité à  : {{ figure.limitededition }} exemplaires</p>
           </section>
           <section class="cart-container">
-            <p v-if="confirmation" class="errormessage" >Vous ne pouvez commander qu'une seule fois cette figurine</p>
-            <button type="click" @click="addToCart(figure, quantity)" class="add-cart">Ajouter au panier</button>
+            <p v-if="confirmation" class="errormessage">Vous ne pouvez commander qu'une seule fois cette figurine</p>
+            <button type="click" @click="addToCart(figure)" class="add-cart">Ajouter au panier</button>
           </section>
+          <div class="redirect-catalogue">
+            <router-link to="/catalogue">
+                <p class="product-title">Retour au catalogue ></p>
+            </router-link>
+        </div>
         </aside>
       </div>
     </div>
 </template>
 
 <script>
-import { getFigureById, getFigureByUrl } from '../services/FigureService'
+import { getFigureByUrl } from '../services/FigureService'
 
 export default {
   name: 'Figure',
@@ -45,17 +50,13 @@ export default {
     }
   },
   methods: {
-    async getFigureById() {
-      if(this.$route.params.figureid == null){
-        getFigureByUrl(this.$route.params.url).then(figures => {
-            this.$set(this,"figures", figures)
-        })
-      }
-      else {
-        getFigureById(this.$route.params.figureid).then(figures => {
-            this.$set(this,"figures", figures)
-        })
-      }
+    async getFigureByUrl() {
+      getFigureByUrl(this.$route.params.url).then(result => {
+        this.figures = result
+        if(this.figures.length === 0){
+          this.$router.push('/NotFound')
+        }
+      })
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
@@ -71,18 +72,15 @@ export default {
         })
       }
       else {
-        if(localStorage.getItem('cart') == null)
+        if(!localStorage.getItem('cart'))
         {
           localStorage.setItem('cart', JSON.stringify(new Array(figure)))
           this.$router.push('/cart')
         }
         else {
           var cart = JSON.parse(localStorage.getItem('cart'));
-          if(!(cart instanceof Array)){
-            cart = [cart]; 
-          }
 
-          if(cart.includes(figure)){
+          if(cart.find(element => element.figureid === figure.figureid)){
             this.confirmation = true
           }
           else {
@@ -95,7 +93,7 @@ export default {
     }
   },
   mounted() {
-    this.getFigureById();
+    this.getFigureByUrl();
   }
 }
 </script>
@@ -229,8 +227,19 @@ p {
   font-size:20px;  
 }
 
+.redirect-catalogue {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  justify-items: flex-end;
+}
+
+
 .errormessage {
-    color: red;
+  color: red;
+  text-align: center;
 }
 
 
@@ -248,7 +257,6 @@ p {
     flex-wrap: wrap;
     align-items: baseline;
   }
-
 }
 
 </style>

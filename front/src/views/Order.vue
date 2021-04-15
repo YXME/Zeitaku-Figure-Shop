@@ -1,10 +1,6 @@
 <template>
     <section class="panier">
-        <div class="redirect-catalogue">
-            <router-link to="/catalogue">
-                <p class="product-title">Retour au catalogue ></p>
-            </router-link>
-        </div>
+        <h2>Commande n°{{ orderdetails.orderid }}</h2>
         <table cellpadding="35">
             <thead>
                 <tr>
@@ -14,26 +10,21 @@
             </thead>
 
             <tbody>
-                <tr v-for="product in cart" :key="product.figureid">
+                <tr v-for="product in order" :key="product.figureid">
                     <td><img v-bind:src="getImgUrl(product.figureid)" class="image"></td>
-                    <td class="product-name">
+                    <td>
                         <router-link :to="{ name: 'Figure', params: { url: product.url } }">
                             <p>{{ product.figuretitle }}</p>
                         </router-link>
-                        <button type="click" @click="deleteFromCart(product.figureid)" class="delete">Supprimer</button>
                     </td>
                     <td>{{ product.eurprice }}€</td>
                 </tr>
-                <tr v-if="empty">
-                    <td colspan="3">Aucun article dans votre panier.</td>
-                </tr>
             </tbody>
 
-            <tfoot v-if="!empty">
+            <tfoot>
                 <tr>
                     <td colspan="3">
-                        <p>Total : {{ subtotal }}€</p>
-                        <button type="click" @click="makeOrder()" class="order">Commander</button>
+                        <p>Total : {{ orderdetails.grandtotal }}€</p>
                     </td>
                 </tr>
             </tfoot>
@@ -42,57 +33,46 @@
 </template>
 
 <script>
+import { getOrderById, getOrderContent } from '../services/AdminService'
+
 export default {
-  name: 'Cart',
+  name: 'Order',
   data(){
     return {
-      cart: [],
-      empty: null,
+      order: [],
       product: {},
-      subtotal: 0,
+      orderdetails: {},
+      localuser: JSON.parse(localStorage.getItem('user'))
     }
   },
   methods: {
-    getCart() {
-        this.cart = JSON.parse(localStorage.getItem('cart'))
+    async getOrderDetails() {
+        getOrderById(this.$route.params.orderid).then(result => {
+            this.orderdetails = result
+            if(this.orderdetails.length === 0){
+                this.$router.push('/NotFound')
+            }
+        })
     },
-    getSubTotal(){
-        if(this.cart != null){
-            this.cart.forEach(element => {
-            this.subtotal += element.eurprice
-            });
-        }
-    },
-    isEmpty() {
-        if(this.cart == null){
-            this.empty = true
-        }
-        else if (Object.keys(this.cart).length === 0){
-            this.empty = true
-        }
-        else {
-            this.empty = false
+    async VerifyUser(){
+        if(!this.orderdetails.userid == this.localuser.userid && !this.localuser.clearance == 1) {
+            this.$router.push('/NotFound')
         }
     },
-    deleteFromCart(figureid){
-        this.cart.findIndex(element => element.figureid === figureid)
-        this.cart.splice(this.cart.findIndex(element => element.figureid === figureid),1)
-        localStorage.setItem('cart', JSON.stringify(this.cart))
-        this.$router.go();
+    async getOrderContent() {
+        getOrderContent(this.$route.params.orderid).then(result => {
+            this.order = result
+        })
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
         return images('./' + pet + ".jpg")
     },
-    makeOrder(){
-        localStorage.setItem('subtotal', this.subtotal)
-        this.$router.push('payment')
-    }
   },
   mounted() {
-      this.getCart();
-      this.getSubTotal();
-      this.isEmpty();
+      this.getOrderDetails();
+      this.VerifyUser();
+      this.getOrderContent();
   }
 }
 </script>
@@ -101,10 +81,7 @@ export default {
 <style scoped>
 
 .panier {
-    margin-top: 5%;;
-    margin-bottom: 5%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin: 1%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -114,11 +91,6 @@ export default {
     width: 100%;
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
-}
-
-.redirect-catalogue {
-    width: 60%;
-    text-align: right;
 }
 
 table {
@@ -150,40 +122,6 @@ th {
   font-size: 15pt;
   font-family: Verdana, Arial, sans-serif ;
   border: none;
-}
-
-.thebuttonatthefinoflapagina {
-  width: 30%;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.delete {
-  width: 100%;
-  background-color: #EAEE59;
-  color: white;
-  text-align: center;
-  height: 30px;
-  font-size: 15pt;
-  font-family: Verdana, Arial, sans-serif ;
-  border: none;
-}
-
-a p{
-  color: white;
-  transition: color 0.3s;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:hover p{
-  color: #EAEE59;
 }
 
 @media screen and (max-width: 900px) {

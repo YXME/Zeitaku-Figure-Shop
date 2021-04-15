@@ -81,17 +81,17 @@ name: 'Payment',
         this.cart.forEach(element => {
             this.weight += element.weight
         });
-        var tempcountryid = this.localuser.countryid
-        this.selectedCountry = this.countries.find(element => element.countryid === tempcountryid).countryname
     },
     async getShipperByRegion() {
-        getShipperByRegion(this.localuser.regionid).then(shippers => { this.$set(this,"shippers", shippers) })
+        getShipperByRegion(this.localuser.regionid).then(result => { this.shippers = result })
     },
     async getShippingFeesByRegion() {
-        getShippingFeesByRegion(this.localuser.regionid).then(shipperfees => { this.$set(this,"shipperfees", shipperfees) })
+        getShippingFeesByRegion(this.localuser.regionid).then(result => { this.shipperfees = result })
     },
     async getCountryList() {
-        getCountryList().then(countries => { this.$set(this,"countries", countries) })
+        getCountryList().then(result => { 
+            this.selectedCountry = result.find(element => element.countryid === this.localuser.countryid).countryname
+        })
     },
     getImgUrl(pet) {
         var images = require.context('../assets/illu/', false, /\.jpg$/)
@@ -121,9 +121,6 @@ name: 'Payment',
             alert("Merci de remplir tout les champs.")
         }
     }
-  },
-  beforeMounted(){
-      this.getCountryList();
   },
   mounted() {
     this.getCountryList();

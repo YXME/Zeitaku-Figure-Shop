@@ -4,7 +4,7 @@
         <h1 class="title">COLLECTION TSUME ART</h1>
         <nav class="nav">
           <div v-for="figure in tsumefigure" :key="figure.figureid">
-            <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
+            <router-link :to="{ name: 'Figure', params: { url: figure.url } }">
               <div class="figure">
                 <img class="cropped-version" v-bind:src="getImgUrl(figure.figureid)" />
                 <p class="product-title">{{ figure.figuretitle.toUpperCase() }}</p>
@@ -18,7 +18,7 @@
         <h1 class="title">COLLECTION ONIRI CREATION</h1>
         <nav class="nav">
           <div v-for="figure in onirifigure" :key="figure.figureid">
-            <router-link :to="{ name: 'Figure', params: { figureid: figure.figureid, url: figure.url } }">
+            <router-link :to="{ name: 'Figure', params: { url: figure.url } }">
               <div class="figure">
                 <img class="cropped-version" v-bind:src="getImgUrl(figure.figureid)" />
                 <p class="product-title">{{ figure.figuretitle.toUpperCase() }}</p>
@@ -50,12 +50,9 @@ export default {
   },
   methods: {
     async getFigureCatalogue() {
-        getFigureCatalogue().then(figures => {
-            this.$set(this,"figures", figures)
-            console.log(figures)
-            this.tsumefigure = figures.slice(0, 4)
-            this.onirifigure = figures.slice(7, 11)
-            console.log(this.tsumefigure)
+        getFigureCatalogue().then(result => {
+            this.tsumefigure = result.slice(0, 4)
+            this.onirifigure = result.slice(7, 11)
         })
     },
     getImgUrl(pet) {
@@ -70,6 +67,16 @@ export default {
 </script>
 
 <style scoped>
+
+.figure {
+    margin-left: 2%;
+    margin-right: 2%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .catalogue {
   background-color: #EAEE59;
@@ -99,12 +106,19 @@ export default {
 }
 
 .nav{
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-around;  
+}
+
+.product-title {
+    width : 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#fff;
+    overflow-wrap: break-word;
 }
 
 .thebuttonatthefinoflapagina {

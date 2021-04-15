@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <router-view/>
-    <Footer/>
+    <Footer class="footer" />
   </div>
 </template>
 
@@ -35,6 +35,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: max-content;
 }
 
 #nav {
@@ -84,9 +88,13 @@ body{
   margin: 0 !important;
   overflow-x:hidden;
   width: 100%;
-  height: 100%;
+  height: max-content;
   background-image: url("./assets/back.jpg");
   background-repeat: repeat;
+}
+
+.footer {
+  align-self: flex-end;
 }
 
 a p{

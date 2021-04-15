@@ -4,7 +4,7 @@
             <img class="illu" src="../assets/logos/favicon.png" alt="Logo du site"/>
             <div class="text">  
                 <h1>DIO N'EST PAS CACHÉ ICI...</h1>
-                <p>Pas d'inquiètude Jojo, Hermit Purple (ou le catalogue du site) saura le débusquer.</p>
+                <p>Pas d'inquiètude Jojo, Hermit Purple (ou le catalogue du site au pire...) saura le débusquer.</p>
             </div>
         </div>
     </section>
