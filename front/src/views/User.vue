@@ -114,7 +114,7 @@ name: 'User',
 }
 
 table {
-    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+    border-collapse: collapse;
 }
 
 td {
