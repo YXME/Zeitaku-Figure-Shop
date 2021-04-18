@@ -1,7 +1,5 @@
 const path = require("path")
 const express = require('express')
-const bodyParser = require('body-parser')
-const jwt = require('jsonwebtoken');
 const app = express()
 const port = 3000
 
@@ -17,10 +15,6 @@ app.use(allowCrossDomain)
 const db = require('./queries.js')
 
 app.use(express.static(path.join(__dirname, '../front/dist')));
-
-app.get('/', (request, response) => {
-  res.sendFile(path.join(__dirname, '../front/build/index.html'));
-})
 
 app.get('/api/catalogue', db.getFigureCatalogue)
 app.get('/figure/:url', db.getFigureByUrl)

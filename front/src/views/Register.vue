@@ -2,7 +2,6 @@
     <article class="page-content">
         <article class="logo">
             <img src="../assets/logos/logo.png" width="35%" height="35%"/>
-            <h2>On n'a pas encore de slogan mais tkt.</h2>
         </article>
         <section class="sign-in">
             <div class="router">
@@ -44,7 +43,7 @@ export default {
         address : null,
         city : null,
         zipcode : null,
-        countryid : 0,
+        countryid : 16,
 
         country: {},
         countries: [],
@@ -133,7 +132,7 @@ export default {
 .router {
     width: 100%;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: center;
     justify-items: space-around;
     font-weight: bolder;
@@ -216,6 +215,17 @@ a:hover p{
     box-shadow: 0 0 5px lightskyblue;
     border: 2px solid lightskyblue;
     outline: none;
+}
+
+@media screen and (max-width: 500px) {
+    .login-register-input {
+        border-radius: 5px 5px 5px 5px;
+        width: 99%;
+        height: 30px;
+        border: none;
+        margin-bottom: 15px;
+        padding-left: 10px
+    }
 }
 
 </style>

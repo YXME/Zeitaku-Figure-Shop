@@ -1,6 +1,14 @@
 <template>
     <section class="panier">
         <h2>Commande n°{{ orderdetails.orderid }}</h2>
+        <div v-if="localuser.clearance === 1">
+          <h4>Adresse de livraison :</h4>
+          <p>{{ orderuser.firstname }} {{ orderuser.lastname }}</p>
+          <p>{{ orderuser.address }}</p>
+          <p v-if="orderuser.zipcode">{{ orderuser.zipcode }} {{localuser.city}} </p>
+          <p v-else>{{ orderuser.city }}</p>
+          <p> {{ selectedCountry }}</p>
+        </div>
         <table cellpadding="35">
             <thead>
                 <tr>
@@ -34,6 +42,7 @@
 
 <script>
 import { getOrderById, getOrderContent } from '../services/AdminService'
+import { getUserInfoByID, getCountryList } from '../services/UserService'
 
 export default {
   name: 'Order',
@@ -42,6 +51,10 @@ export default {
       order: [],
       product: {},
       orderdetails: {},
+      orderuser: {},
+      orderuserid: 0,
+      countries: [],
+      selectedCountry: "",
       localuser: JSON.parse(localStorage.getItem('user'))
     }
   },
@@ -49,19 +62,33 @@ export default {
     async getOrderDetails() {
         getOrderById(this.$route.params.orderid).then(result => {
             this.orderdetails = result
+            this.orderuserid = result.userid
             if(this.orderdetails.length === 0){
                 this.$router.push('/NotFound')
             }
+            this.getOrderContent();
         })
+        
     },
-    async VerifyUser(){
+    VerifyUser(){
         if(!this.orderdetails.userid == this.localuser.userid && !this.localuser.clearance == 1) {
             this.$router.push('/NotFound')
         }
     },
+    async getCountryList() {
+        await getCountryList().then(result => { 
+          this.countries = result
+          this.selectedCountry = this.countries.find(x => x.countryid === this.orderuser.countryid).countryname 
+        })
+    },
     async getOrderContent() {
-        getOrderContent(this.$route.params.orderid).then(result => {
+        await getOrderContent(this.$route.params.orderid).then(result => {
             this.order = result
+        })
+        await getUserInfoByID(this.orderuserid).then(result => {
+          this.orderuser = result[0]
+          this.orderuser.lastname = this.orderuser.lastname.toUpperCase()
+          this.getCountryList();
         })
     },
     getImgUrl(pet) {
@@ -69,10 +96,11 @@ export default {
         return images('./' + pet + ".jpg")
     },
   },
+  beforeMount(){
+    this.getOrderDetails();
+  },
   mounted() {
-      this.getOrderDetails();
       this.VerifyUser();
-      this.getOrderContent();
   }
 }
 </script>
