@@ -66,12 +66,12 @@ const postUserAuthRegister = (request, response) => {
           }
           else {
             const hashpassword = hash;
-            pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 0)', [email, firstname, lastname, hashpassword, address, city, zipcode, countryid, regionid], (error, results) => {
+            pool.query('INSERT INTO UTILISATEUR (EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 0) RETURNING USERID', [email, firstname, lastname, hashpassword, address, city, zipcode, countryid, regionid], (error, results) => {
               if (error) {
                 console.log(error)
               }
               else {
-                pool.query('SELECT EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE EMAIL = $1', [email], (error, result) => {
+                pool.query('SELECT EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE USERID = $1', [results.rows[0].userid], (error, result) => {
                   if (error) {
                     console.log(error)
                   }

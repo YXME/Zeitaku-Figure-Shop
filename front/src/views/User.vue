@@ -65,8 +65,7 @@ name: 'User',
   },
   methods: {
     disconnectUser() {
-        localStorage.removeItem('jwt')
-        localStorage.removeItem('user')
+        localStorage.clear()
         this.$router.push({ path: '/' })
     },
     async changePassword(){
