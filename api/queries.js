@@ -71,7 +71,7 @@ const postUserAuthRegister = (request, response) => {
                 console.log(error)
               }
               else {
-                pool.query('SELECT EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE USERID = $1', [results.rows[0].userid], (error, result) => {
+                pool.query('SELECT USERID, EMAIL, FIRSTNAME, LASTNAME, ADDRESS, CITY, ZIPCODE, COUNTRYID, REGIONID, CLEARANCE FROM UTILISATEUR WHERE USERID = $1', [results.rows[0].userid], (error, result) => {
                   if (error) {
                     console.log(error)
                   }
